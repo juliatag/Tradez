@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Profile</title>
+</head>
+<body>
+	<p>
+		fake logged in user: <span th:text="*{username} ?: 'Guest'">user</span>
+		<a href="/">home</a> | <a href="/explore">explore</a> | <a
+			href="/dashboard">dashboard</a>
+	</p>
+	<h1>Edit Profile</h1>
+	<form th:action="@{/editprofile}" th:object="${user}" method="post"
+		style="max-width: 600px; margin: 0 auto;">
+		<div style="display:flex;flex-direction:column;gap:20px;">
+		<div>
+				<label>id: </label> <input type="text" th:field="*{id}" readonly />
+			</div>
+			<div>
+				<label>username: </label> <input type="text" th:field="*{username}" />
+			</div>
+			<div>
+				<label>email: </label> <input type="text" th:field="*{email}" />
+			</div>
+
+			<div>
+				<label>password: </label> <input type="text" th:field="*{password}" />
+			</div>
+			<div>
+				<label>confirm password: </label> <input type="text"
+					th:field="*{confirmPassword}" />
+			</div>
+			<div>
+				<label>postal code: </label> <input type="text"
+					th:field="*{postalCode}" />
+			</div>
+			<div>
+				<label>description: </label>
+				<textarea th:field="*{description}"></textarea>
+			</div>
+
+			<div>
+				<button type="submit">Update</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

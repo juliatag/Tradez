@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:object="${user}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+</head>
+<body>
+	<p>fake logged in user: <span th:text="*{username} ?: 'Guest'" >user</span>
+	<a href="/">home</a> | <a href="/explore">explore</a> | <a href="/dashboard">dashboard</a>
+	</p>
+	<h1>Home</h1>
+	
+	<div>
+		<h2>Trade your stuff</h2>
+		<p>Short description here. Mea aeterno eleifend antiopam ad, nam
+			no suscipit quaerendum.</p>
+			<a href="/signup"><button type="button">Sign Up</button></a>
+	</div>
+	<form th:action="@{/explore}" method="post"
+		style="max-width: 600px; margin: 0 auto;">
+		<div style="display: flex; flex-direction: column; gap: 20px;">
+			<div>
+				<label>Search: </label> <input type="text" name="search"  />
+				<button type="submit">Search</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

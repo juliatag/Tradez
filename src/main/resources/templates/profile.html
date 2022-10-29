@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>User #1</title>
+</head>
+<body th:object="${user}">
+	<p>
+		fake logged in user: <span th:text="*{username} ?: 'Guest'">user</span>
+		<a href="/">home</a> | <a href="/explore">explore</a> | <a
+			href="/dashboard">dashboard</a>
+	</p>
+	<h1>User # [[*{id}]]</h1>
+	<div>
+		<p>email: <span th:text="*{email}"></span></p>
+		<p>username: <span th:text="*{username}"></span></p>
+		<p>postal code: <span th:text="*{postalCode}"></span></p>
+		<p>description: <span th:text="*{description}"></span></p>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:object="${user}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sign Up Confirmation</title>
+</head>
+<body>
+<p>
+		fake logged in user: <span th:text="*{username} ?: 'Guest'">user</span>
+		<a href="/">home</a> | <a href="/explore">explore</a> | <a
+			href="/dashboard">dashboard</a>
+	</p>
+	<h1>Welcome to Tradez [[*{username}]]</h1>
+	<p>You have sucessfully registered. Here is your information:</p>
+	<div>
+		<p>
+			email: <span th:text="*{email}"></span>
+		</p>
+		<p>
+			username: <span th:text="*{username}"></span>
+		</p>
+		<p>
+			postal code: <span th:text="*{postalCode}"></span>
+		</p>
+		<p>
+			description: <span th:text="*{description}"></span>
+		</p>
+	</div>
+	<p>We have not built a login page yet, but you can see your profile</p>
+	<a th:href="@{/profile/{id}(id=*{id})}"><button>View Profile</button></a>
+
+</body>
+</html>

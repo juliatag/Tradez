@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:object="${user}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Explore</title>
+</head>
+<body>
+	<p>
+		fake logged in user: <span th:text="*{username} ?: 'Guest'">user</span>
+		<a href="/">home</a> | <a href="/explore">explore</a> | <a
+			href="/dashboard">dashboard</a>
+	</p>
+	<h1>Explore</h1>
+
+	<form th:action="@{/explore}" method="post"
+		style="max-width: 600px; margin: 0 auto;">
+		<div style="display: flex; flex-direction: column; gap: 20px;">
+			<div>
+				<label>Search: </label> <input type="text" th:name="search"
+					th:value="${search}" />
+				<button type="submit">Search</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
