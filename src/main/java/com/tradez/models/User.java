@@ -1,14 +1,15 @@
 package com.tradez.models;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+
+
 
 @Entity
 public class User {
@@ -23,8 +24,8 @@ public class User {
 	private String postalCode;
 	@Column(length=512)//default is too short
 	private String description;
-	@Temporal(TemporalType.DATE)//should set the default timestamp
-	private Date timestamp;
+	
+	private LocalDateTime timestamp = LocalDateTime.now();
 	
 	
 	public Long getId() {
@@ -69,10 +70,10 @@ public class User {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Date getTimestamp() {
+	public LocalDateTime getTimestamp() {
 		return timestamp;
 	}
-	public void setTimestamp(Date timestamp) {
+	public void setTimestamp(LocalDateTime timestamp) {
 		this.timestamp = timestamp;
 	}
 	

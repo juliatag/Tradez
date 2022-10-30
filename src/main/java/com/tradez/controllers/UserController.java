@@ -1,6 +1,7 @@
 package com.tradez.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,10 @@ public class UserController {
 	@PostMapping("/signup")
 	public String signUp(User user, Model model) {
 		
+		BCryptPasswordEncoder passwordEncoder= new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
+		
 		//add verification logic
 		service.save(user);
 		
@@ -34,7 +39,7 @@ public class UserController {
 		return "signup_confirmation";	
 	}
 	
-	@GetMapping("/profile/{id}")//change this for username once there is a getByUsername method
+	@GetMapping("/profile/{username}")//change this for username once there is a getByUsername method
 	public String getUser(@PathVariable Long id, Model model) {
 		User user = service.get(id);//change this for username once there is a getByUsername method
 		model.addAttribute("user", user);

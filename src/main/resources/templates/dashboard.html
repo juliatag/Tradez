@@ -25,9 +25,17 @@
 			description: <span th:text="*{description}"></span>
 		</p>
 	</div>
-	<a th:href="@{/editprofile/{id}(id=*{id})}"><button type="button">Edit Profile</button></a>
+	<a th:href="@{/editprofile/{id}(id=*{id})}"><button type="button">Edit
+			Profile</button></a>
 	<a th:href="@{/profile/{id}(id=*{id})}"><button>View
 			Profile</button></a>
+
+	<h4>
+		<a th:href="@{/listing}">Create listing</a>
+	</h4>
+	<h4>
+		<a th:href="@{/logout}">Click here to Logout</a>
+	</h4>
 
 </body>
 </html>

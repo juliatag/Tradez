@@ -6,7 +6,7 @@
 </head>
 <body th:object="${user}">
 	<p>
-		fake logged in user: <span th:text="*{username} ?: 'Guest'">user</span>
+		logged in : <span th:text="*{username} ?: 'Guest'">user</span>
 		<a href="/">home</a> | <a href="/explore">explore</a> | <a
 			href="/dashboard">dashboard</a>
 	</p>

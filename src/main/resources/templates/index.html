@@ -5,7 +5,7 @@
 <title>Home</title>
 </head>
 <body>
-	<p>fake logged in user: <span th:text="*{username} ?: 'Guest'" >user</span>
+	<p>logged in user: <span th:text="*{username} ?: 'Guest'" >user</span>
 	<a href="/">home</a> | <a href="/explore">explore</a> | <a href="/dashboard">dashboard</a>
 	</p>
 	<h1>Home</h1>
@@ -25,5 +25,9 @@
 			</div>
 		</div>
 	</form>
+	<h4><a th:href="@{/login}">Click here to
+Login</a></h4>
+	<h4><a th:href="@{/logout}">Click here to
+Logout</a></h4>
 </body>
 </html>

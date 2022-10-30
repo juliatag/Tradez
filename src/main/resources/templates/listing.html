@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Create Listing</title>
+</head>
+<body>
+	<p>
+		fake logged in user: <span th:text="*{username} ?: 'Guest'">user</span>
+		<a href="/">home</a> | <a href="/explore">explore</a> | <a
+			href="/dashboard">dashboard</a>
+	</p>
+	<h1>Create Listing</h1>
+	<form th:action="@{/listing}" th:object="${listing}" method="post"
+		style="max-width: 600px; margin: 0 auto;">
+			<div>
+				<label>Title: </label> <input type="text" th:field="*{title}" />
+			</div>
+			<div>
+				<label>Category: </label> <input type="text" th:field="*{category}" />
+			</div>
+
+			<div>
+				<label>Condition: </label> <input type="text"
+					th:field="*{conditions}" />
+			</div>
+			<div>
+				<label>img: </label> <input type="text" th:field="*{img}" />
+			</div>
+			<div>
+				<label>description: </label>
+				<textarea th:field="*{description}"> </textarea>
+			</div>
+			<div>
+				<label>Estimated Value: </label> <input type="text"
+					th:field="*{estValue}" />
+			</div>
+			<div>
+			<Select th:field="*{delivery}">
+				<option th:value="true" th:text="Delivery"></option>
+				<option th:value="false" th:text="NoDelivery"></option>
+			</Select>
+			</div>
+			
+			<div>
+			<Select th:field="*{status}">
+				<option th:value="available" th:text="Available"></option>
+				<option th:value="traded" th:text="Traded"></option>
+			</Select>
+			</div>
+
+			<div>
+				<button type="submit">Save</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
