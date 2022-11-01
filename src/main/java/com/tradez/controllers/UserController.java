@@ -1,6 +1,9 @@
 package com.tradez.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tradez.login.CustomUserDetails;
 import com.tradez.models.User;
 import com.tradez.services.UserService;
 
@@ -27,48 +31,60 @@ public class UserController {
 	
 	@PostMapping("/signup")
 	public String signUp(User user, Model model) {
-		
-		BCryptPasswordEncoder passwordEncoder= new BCryptPasswordEncoder();
-		String encodedPassword = passwordEncoder.encode(user.getPassword());
-		user.setPassword(encodedPassword);
-		
 		//add verification logic
+		user.setPassword(encodePassword(user.getPassword()));
 		service.save(user);
 		
 		model.addAttribute("user", user);
 		return "signup_confirmation";	
 	}
 	
-	@GetMapping("/profile/{username}")//change this for username once there is a getByUsername method
-	public String getUser(@PathVariable Long id, Model model) {
-		User user = service.get(id);//change this for username once there is a getByUsername method
+	@GetMapping("/profile/{username}")
+	public String getUser(@PathVariable String username, Model model) {
+		User user = service.getByUsername(username);
 		model.addAttribute("user", user);
 		return "profile";
 		
 	}
 	
-	@RequestMapping("/editprofile/{id}")
-	public String editProfilePage(@PathVariable Long id, Model model) {
-		User user = service.get(id);//change for current logged in user
+	@RequestMapping("/dashboard")
+	public String dashboard(Model model) {
+		User user = getCurrentUser();
+		model.addAttribute("user", user);
+		return "dashboard";	
+	}
+	
+	@RequestMapping("/dashboard/profile/edit")
+	public String editProfilePage(Model model) {
+		User user = getCurrentUser();
 		model.addAttribute("user", user);
 		return "edit_profile";	
 	}
 	
-	@PostMapping("/editprofile")
+	@PostMapping("/dashboard/profile/edit")
 	public String update(Model model) {
-		User user = service.get(1L);//change for current logged in user
+		User user = getCurrentUser();
 		//add verification logic
 		service.save(user);
 		
 		model.addAttribute("user", user);
-		return "dashboard";	
+		return "redirect:/dashboard";	
 	}
 	
-	@RequestMapping("/dashboard")
-	public String dashboard(Model model) {
-		User user = service.get(1L);//change for current logged in user
-		model.addAttribute("user", user);
-		return "dashboard";	
+	
+	
+	public String encodePassword(String password) {
+		BCryptPasswordEncoder passwordEncoder= new BCryptPasswordEncoder();
+		return passwordEncoder.encode(password);
+	}
+	
+	public User getCurrentUser() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)) {//replace with authenticated user
+			String username  = ((CustomUserDetails) auth.getPrincipal()).getUsername();
+			return service.get(username);
+		}
+		return new User();
 	}
 
 }

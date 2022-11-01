@@ -1,11 +1,14 @@
 package com.tradez.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import com.tradez.login.CustomUserDetails;
 import com.tradez.models.User;
 import com.tradez.services.UserService;
 
@@ -17,10 +20,7 @@ public class PagesController {
 	
 	@RequestMapping("/")
 	public String homePage(Model model) {
-		User user = new User();
-		if(userService.get(1L) != null) {//replace with authenticated user
-			user = userService.get(1L);
-		}
+		User user = getCurrentUser();
 		model.addAttribute("user",user);
 		return "index";	
 	}
@@ -28,10 +28,7 @@ public class PagesController {
 	
 	@RequestMapping("/explore")
 	public String searchPage(@RequestParam (name = "search", required = false) String search, Model model) {
-		User user = new User();
-		if(userService.get(1L) != null) {//replace with authenticated user
-			user = userService.get(1L);
-		}
+		User user = getCurrentUser();
 		
 		//FUTURE LOGIC
 //		List<Listing> listings = listingService.getAll();
@@ -42,5 +39,14 @@ public class PagesController {
 		model.addAttribute("user",user);
 		model.addAttribute("search",search);
 		return "explore";	
+	}
+	
+	public User getCurrentUser() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)) {//replace with authenticated user
+			String username  = ((CustomUserDetails) auth.getPrincipal()).getUsername();
+			return userService.get(username);
+		}
+		return new User();
 	}
 }

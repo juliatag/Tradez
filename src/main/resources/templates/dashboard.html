@@ -6,11 +6,11 @@
 </head>
 <body th:object="${user}">
 	<p>
-		fake logged in user: <span th:text="*{username} ?: 'Guest'">user</span>
+		current user: <span th:text="*{username} ?: 'Guest'">user</span>
 		<a href="/">home</a> | <a href="/explore">explore</a> | <a
-			href="/dashboard">dashboard</a>
+			href="/dashboard">Dashboard</a>
 	</p>
-	<h1>Dashboard</h1>
+	<h1>[[*{username}]]'s Dashboard</h1>
 	<div>
 		<p>
 			email: <span th:text="*{email}"></span>
@@ -25,9 +25,9 @@
 			description: <span th:text="*{description}"></span>
 		</p>
 	</div>
-	<a th:href="@{/editprofile/{id}(id=*{id})}"><button type="button">Edit
+	<a th:href="@{/dashboard/profile/edit}"><button type="button">Edit
 			Profile</button></a>
-	<a th:href="@{/profile/{id}(id=*{id})}"><button>View
+	<a th:href="@{/profile/{username}(username=*{username})}"><button>View
 			Profile</button></a>
 
 	<h4>

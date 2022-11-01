@@ -7,7 +7,6 @@ import com.tradez.models.User;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 public class CustomUserDetails implements UserDetails {
 	private User user;
@@ -28,6 +27,10 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public String getUsername() {
+		return user.getUsername();
+	}
+	
+	public String getEmail() {
 		return user.getEmail();
 	}
 

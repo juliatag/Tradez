@@ -1,4 +1,5 @@
 package com.tradez.login;
+
 //import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -41,12 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		.antMatchers("/users").authenticated()
-		.anyRequest().permitAll()
-		.and()
-		.formLogin()
-				.usernameParameter("email").defaultSuccessUrl("/").permitAll().and().logout().logoutSuccessUrl("/")
+		http.authorizeRequests().antMatchers("/dashboard/**").authenticated().anyRequest().permitAll().and().formLogin()
+				.usernameParameter("email").defaultSuccessUrl("/dashboard").permitAll().and().logout().logoutSuccessUrl("/")
 				.permitAll();
 	}
 }
