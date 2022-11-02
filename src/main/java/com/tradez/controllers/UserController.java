@@ -39,9 +39,6 @@ public class UserController {
 
 	@PostMapping("/signup_form")
 	public String submitForm(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
-		System.out.println("Professing form...");
-		System.out.println(user);
-
 		if (bindingResult.hasErrors()) {
 			System.out.println("binding errors before encryption");
 			return "signup_form";
@@ -50,7 +47,6 @@ public class UserController {
 		user.setPassword(passwordEncoder.encode(user.getPlainPassword()));
 		user.setConfirmPassword(passwordEncoder.encode(user.getPlainConfirmPassword()));
 		repo.save(user);
-		System.out.println(user);
 		return "signup_confirmation";
 	}
 
