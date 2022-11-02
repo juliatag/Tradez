@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="~{header :: header}"></header>
+<body>
+	<div class="container text-center">
+		<div>
+			<h1>Update Listing Form</h1>
+		</div>
+		<form th:action="@{/updateListing}" method="post"
+			enctype="multipart/form-data" th:object="${listing}">
+			<input type="hidden" th:field="*{id}" />
+			<img  th:src="@{${'/loadListingImage/' + listing.id }}" width="80px" height="80px" />
+			<div th:replace="~{listingForm :: listing}"></div>
+		</form>
+	</div>
+</body>
+</html>

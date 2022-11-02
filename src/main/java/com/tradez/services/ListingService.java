@@ -1,8 +1,77 @@
 package com.tradez.services;
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.tradez.dao.CategoryRepo;
+import com.tradez.dao.ListingRepo;
+import com.tradez.models.Category;
+import com.tradez.models.Listing;
 
 @Service
 public class ListingService {
+	
+	public static List<String> deliveries = Arrays.asList("Yes","No");
+	public static List<String> conditions = Arrays.asList("New","Like New","Good","Fair");
 
+	@Autowired
+	CategoryRepo categoryRepo;
+	
+	@Autowired
+	ListingRepo listingRepo;
+	
+	public List<String> getDeliveries(){
+		return deliveries;
+	}
+	
+	public List<String> getConditions(){
+		return conditions;
+	}
+	
+	public List<Category> getCategories(){
+		return this.categoryRepo.findAll();
+	}
+
+	public void save(Listing listing, MultipartFile file) throws IOException {
+		listing.setImg(file.getBytes());
+		this.listingRepo.save(listing);
+	}
+	
+	public void update(Listing listing, MultipartFile file) throws IOException {
+		Listing old = this.listingRepo.findById(listing.getId()).get();
+		
+		if(file != null)
+		  listing.setImg(file.getBytes());
+		else
+		  listing.setImg(old.getImg());
+		listing.setCreateDate(old.getCreateDate());
+		listing.setCreatedBy(old.getCreatedBy());
+		this.listingRepo.save(listing);
+	}
+	
+	
+	public List<Listing> findByUsername(){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return this.listingRepo.findByCreatedBy(auth.getName());
+	}
+	
+	public Listing findById(Long id) {
+		return this.listingRepo.findById(id).get();
+	}
+	
+	public byte[] findImageById(Long id) {
+		Listing listing = this.listingRepo.findById(id).get();
+		return listing.getImg();
+	}
+	
+	public void deleteById(Long id) {
+		this.listingRepo.deleteById(id);
+	}
 }
