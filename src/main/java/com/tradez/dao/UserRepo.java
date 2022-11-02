@@ -8,4 +8,6 @@ import com.tradez.models.User;
 public interface UserRepo extends JpaRepository<User, Long> {
 
 	public User findByUsername(String username);
+	
+	public User findByEmail(String username);
 }
