@@ -46,10 +46,11 @@ public class UserController {
 			System.out.println("binding errors before encryption");
 			return "signup_form";
 		}
-//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//		user.setPassword(passwordEncoder.encode(user.getPassword()));
-//		user.setConfirmPassword(passwordEncoder.encode(user.getConfirmPassword()));
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		user.setPassword(passwordEncoder.encode(user.getPlainPassword()));
+		user.setConfirmPassword(passwordEncoder.encode(user.getPlainConfirmPassword()));
 		repo.save(user);
+		System.out.println(user);
 		return "signup_confirmation";
 	}
 

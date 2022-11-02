@@ -16,11 +16,11 @@ public class FieldsValueMatchValidator implements ConstraintValidator<FieldsValu
 	public boolean isValid(final User value, final ConstraintValidatorContext context) {
 
 		User user = value;
-		boolean isValid = user.getPassword().equals(user.getConfirmPassword());
+		boolean isValid = user.getPlainPassword().equals(user.getPlainConfirmPassword());
 		if (!isValid) {
 			context.disableDefaultConstraintViolation();
 			context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate())
-					.addPropertyNode("password").addConstraintViolation();
+					.addPropertyNode("plainPassword").addConstraintViolation();
 		}
 		return isValid;
 	}

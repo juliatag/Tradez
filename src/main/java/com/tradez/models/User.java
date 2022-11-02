@@ -7,14 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import com.tradez.validation.FieldsValueMatch;
 import com.tradez.validation.ValidPassword;
 
 @Entity
-@FieldsValueMatch(field = "password", fieldMatch = "confirmPassword", message = "Password and confirm password do not match!")
+@FieldsValueMatch(field = "plainPassword", fieldMatch = "plainConfirmPassword", message = "Password and confirm password do not match!")
 public class User {
 
 	@Id
@@ -28,13 +30,18 @@ public class User {
 	@NotBlank(message = "Username must not be blank")
 	private String username;
 
-	@ValidPassword
 	private String password;
 
 	@ValidPassword
-	private String confirmPassword;
+	@Transient
+	private String plainPassword;
 
-//	@Pattern(regexp = "^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$", message = "Postal code must only include capital letter, numbers with or without space")
+	private String confirmPassword;
+	@ValidPassword
+	@Transient
+	private String plainConfirmPassword;
+
+	@Pattern(regexp = "^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$", message = "Postal code must only include capital letter, numbers with or without space")
 	private String postalCode;
 
 	@Column(length = 512) // default is too short
@@ -74,12 +81,28 @@ public class User {
 		this.password = password;
 	}
 
+	public String getPlainPassword() {
+		return plainPassword;
+	}
+
+	public void setPlainPassword(String plainPassword) {
+		this.plainPassword = plainPassword;
+	}
+
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}
 
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
+	}
+
+	public String getPlainConfirmPassword() {
+		return plainConfirmPassword;
+	}
+
+	public void setPlainConfirmPassword(String plainConfirmPassword) {
+		this.plainConfirmPassword = plainConfirmPassword;
 	}
 
 	public String getPostalCode() {
@@ -109,8 +132,9 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", username=" + username + ", password=" + password
-				+ ", confirmPassword=" + confirmPassword + ", postalCode=" + postalCode + ", description=" + description
-				+ ", timestamp=" + timestamp + "]";
+				+ ", plainPassword=" + plainPassword + ", confirmPassword=" + confirmPassword
+				+ ", plainConfirmPassword=" + plainConfirmPassword + ", postalCode=" + postalCode + ", description="
+				+ description + ", timestamp=" + timestamp + "]";
 	}
 
 }

@@ -15,18 +15,18 @@
           <input type="text" th:field="*{username}" placeholder="Username" />
           <span class="alert_message error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username error</span>
 
-          <input type="password" th:field="*{password}" placeholder="Create password" />
-          <ul class="alert_message error" th:each="error: ${#fields.errors('password')}">
+          <input type="password" th:field="*{plainPassword}" placeholder="Create password" />
+          <ul class="alert_message error" th:each="error: ${#fields.errors('plainPassword')}">
 			  <li th:each="message : ${error.split(',')}">
-			    <p th:text="${message}">password error</p>
+			    <p th:text="${message}">plainPassword error</p>
 			  </li>
 			</ul>
           
 
-          <input type="password" th:field="*{confirmPassword}" placeholder="Confirm password" />
-          <ul class="alert_message error" th:each="error: ${#fields.errors('confirmPassword')}">
+          <input type="password" th:field="*{plainConfirmPassword}" placeholder="Confirm password" />
+          <ul class="alert_message error" th:each="error: ${#fields.errors('plainConfirmPassword')}">
 			  <li th:each="message : ${error.split(',')}">
-			    <p th:text="${message}">confirmPassword error</p>
+			    <p th:text="${message}">plainConfirmPassword</p>
 			  </li>
 			</ul>
           
