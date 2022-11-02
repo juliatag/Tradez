@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
-
 @Entity
 public class Listing extends Auditable<String> {
 	@Id

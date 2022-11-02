@@ -27,12 +27,8 @@ public class UserController {
 
 	@PostMapping("/signup")
 	public String signUp(User user, Model model) {
-
-		// add verification logic
 		service.save(user);
-
-		model.addAttribute("user", user);
-		return "signup_confirmation";
+	    return "signup_confirmation";
 	}
 
 	@GetMapping("/profile") // change this for username once there is a getByUsername method

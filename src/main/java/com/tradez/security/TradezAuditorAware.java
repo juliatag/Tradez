@@ -16,8 +16,10 @@ public class TradezAuditorAware implements AuditorAware<String> {
 		if (authentication == null || !authentication.isAuthenticated()) {
 			return null;
 		}
-		
-		UserDetails user = (CustomUserDetails)authentication.getPrincipal();
+		if(authentication.getPrincipal() instanceof String) {
+			return Optional.of((String)authentication.getPrincipal());
+		}
+		UserDetails user = (UserDetails)authentication.getPrincipal();
 		return Optional.of(user.getUsername());
 	}
 }
