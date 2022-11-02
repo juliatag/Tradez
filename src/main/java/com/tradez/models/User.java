@@ -7,23 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-
-import com.tradez.validation.FieldsValueMatch;
-import com.tradez.validation.ValidPassword;
 
 @Entity
-@FieldsValueMatch(field = "plainPassword", fieldMatch = "plainConfirmPassword", message = "Password and confirm password do not match!")
+//@FieldsValueMatch(field = "plainPassword", fieldMatch = "plainConfirmPassword", message = "Password and confirm password do not match!")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Email(message = "Please provide a valid email")
+//	@Email(message = "Please provide a valid email")
 	@NotBlank(message = "Email must not be blank")
 	private String email;
 
@@ -32,16 +26,18 @@ public class User {
 
 	private String password;
 
-	@ValidPassword
-	@Transient
+//	@ValidPassword
+//	@Transient
+	@NotBlank
 	private String plainPassword;
-
+//	@Transient
+	@NotBlank
 	private String confirmPassword;
-	@ValidPassword
-	@Transient
+//	@ValidPassword
+//	@Transient
 	private String plainConfirmPassword;
 
-	@Pattern(regexp = "^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$", message = "Postal code must only include capital letter, numbers with or without space")
+//	@Pattern(regexp = "^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$", message = "Postal code must only include capital letter, numbers with or without space")
 	private String postalCode;
 
 	@Column(length = 512) // default is too short

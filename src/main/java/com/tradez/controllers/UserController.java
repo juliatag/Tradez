@@ -50,6 +50,11 @@ public class UserController {
 		return "signup_confirmation";
 	}
 
+	@GetMapping("/login")
+	public String login() {
+		return "login_form";
+	}
+
 	@GetMapping("/profile/{username}")
 	public String getUser(@PathVariable String username, Model model) {
 		User user = service.getByUsername(username);

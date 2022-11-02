@@ -36,7 +36,7 @@
           <textarea rows="10" th:field="*{description}" placeholder="Description about youself"></textarea>
 
           <button type="submit" class="btn">Sign Up</button>
-          <small>Already have an account? <a href="signin.html">Sign In</a></small>
+          <small>Already have an account? <a th:href="@{/login}">Sign In</a></small>
         </form>
       </div>
     </section>
