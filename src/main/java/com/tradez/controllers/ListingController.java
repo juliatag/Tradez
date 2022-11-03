@@ -45,9 +45,17 @@ public class ListingController {
 		return "redirect:/dashboard";
 	}
 	
+//	*******ZACS DELETE CONFIRM*****
 	
+	@GetMapping("/confirmDelete/{id}")
+	public String confirmDelete(@PathVariable Long id, Model model) throws IOException {
+		model.addAttribute("listing", this.listingService.findById(id));
+		System.out.print("confirm delete"+ id);
+		return "confirm_delete";
+	}
 	@GetMapping("/deleteListing/{id}")
 	public String deleteListing(@PathVariable Long id) throws IOException {
+		System.out.print("deleting..."+ id);
 		this.listingService.deleteById(id);
 		return "redirect:/dashboard";
 	}
