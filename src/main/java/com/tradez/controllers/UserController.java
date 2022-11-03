@@ -27,14 +27,19 @@ public class UserController {
 		binder.addValidators(new UserValidator());
 	}
 
+	@GetMapping("/")
+	public String homePage() {
+		return "redirect:/dashboard";
+	}
+	
 	@GetMapping("/login.html")
-	public String login() {
+	public String loginPage() {
 		return "login";
 	}
 
 	// Login form with error
 	@GetMapping("/login-error.html")
-	public String loginError(Model model) {
+	public String loginErrorPage(Model model) {
 		model.addAttribute("loginError", true);
 		return "login.html";
 	}
