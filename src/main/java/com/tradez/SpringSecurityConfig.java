@@ -41,6 +41,7 @@ public class SpringSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.csrf().disable();
 		
 		http.authorizeRequests().antMatchers("/dashboard/**").authenticated().anyRequest().permitAll().and();
 		http.formLogin().loginPage("/login").usernameParameter("username").defaultSuccessUrl("/dashboard").failureUrl("/login?error").permitAll();
