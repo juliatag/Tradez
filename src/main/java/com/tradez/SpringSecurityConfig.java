@@ -43,7 +43,7 @@ public class SpringSecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests().antMatchers("/dashboard/**").authenticated().anyRequest().permitAll().and();
-		http.formLogin().usernameParameter("username").defaultSuccessUrl("/dashboard").failureUrl("/login?error").permitAll();
+		http.formLogin().loginPage("/login").usernameParameter("username").defaultSuccessUrl("/dashboard").failureUrl("/login?error").permitAll();
 		http.logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll();
 		
 		return http.build();

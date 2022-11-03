@@ -44,6 +44,11 @@ public class UserController {
 		model.addAttribute("authUser", this.service.getAuthUser());
 	    return "signup_confirmation";
 	}
+	
+	@RequestMapping("/login")
+	public String Login( Model model) {
+	    return "login_form_Yi";
+	}
 
 	@GetMapping("/profile/{username}")
 	public String getUserProfile(@PathVariable String username, Model model) {
