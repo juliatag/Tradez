@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="~{fragments/header :: header}"> </header>
+<body>
+	<section class="form_section">
+		<div class="container form_section-container">
+			<h2 th:text="${title}">Title</h2>
+
+			<form th:action="@{/saveListing}" method="post"
+				enctype="multipart/form-data" th:object="${listing}"
+			>
+
+				<input type="hidden" th:field="*{id}" /> 
+				
+				<input type="text" th:field="*{title}" /> 
+				<span class="alert_message error"
+					th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title
+					error</span> 
+				
+				<select th:field="*{category}" >
+					<option th:each="ca : ${categories}" th:text="${ca.name}"
+						th:value="${ca.id}">
+				</select> 
+				
+				<input type="number" th:field="*{estValue}" /> 
+				<span
+					class="alert_message error"
+					th:if="${#fields.hasErrors('estValue')}" th:errors="*{estValue}">Estimate
+					value error</span>
+
+				<ul style="list-style: none">
+					<li th:each="deli: ${deliveries}"
+						style="display: inline-block; padding-right: 10px"><input
+						type="radio" th:field="*{delivery}" th:value="${deli}"
+						th:text="${deli}"></li>
+				</ul>
+
+				<ul style="list-style: none">
+					<li th:each="condition: ${conditions}"
+						style="display: inline-block; padding-right: 10px"><input
+						type="radio" th:field="*{state}" th:value="${condition}"
+						th:text="${condition}"></li>
+				</ul>
+
+				<textarea rows="10" th:field="*{description}"></textarea>
+
+				<div class="form_control">
+					<label for="thumbnail">Change thumbnail</label> 
+				    <input type="file" id="thumbnail" name="imgFile" />
+				</div>
+
+				<button type="submit" class="btn">Submit</button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>

@@ -29,27 +29,22 @@ public class ListingController {
 
 	@GetMapping("/createListing")
 	public String createListingPage(Model model) {
-		model.addAttribute("listing", new Listing());
-		setupModel(model);
-		return "new_listing";
-	}
-	
-	@PostMapping("/createListing")
-	public String createListing(Listing listing, @RequestPart MultipartFile imgFile) throws IOException {
-		this.listingService.save(listing, imgFile);
-		return "redirect:/dashboard";
+		setupModel(model,"Add Listing",new Listing());
+		return "listing_form";
 	}
 	
 	@GetMapping("/updateListing/{id}")
 	public String updateListingPage(@PathVariable("id") Long id,Model model) {
-		model.addAttribute("listing", this.listingService.findById(id));
-		setupModel(model);
-		return "update_listing";
+		setupModel(model,"Edit Listing",this.listingService.findById(id));
+		return "listing_form";
 	}
 	
-	@PostMapping("/updateListing")
-	public String updateListing(Listing listing, @RequestPart MultipartFile imgFile) throws IOException {
-		this.listingService.update(listing, imgFile);
+	@PostMapping("/saveListing")
+	public String saveListing(Listing listing, @RequestPart MultipartFile imgFile) throws IOException {
+		if(listing.getId() == null)
+		  this.listingService.save(listing, imgFile);
+		else
+		  this.listingService.update(listing, imgFile);	
 		return "redirect:/dashboard";
 	}
 	
@@ -74,7 +69,10 @@ public class ListingController {
 	}	
 	
 	
-	private void setupModel(Model model) {
+	private void setupModel(Model model,String title,Listing listing) {
+		model.addAttribute("listing", listing);
+		model.addAttribute("title", title);
+		
 		model.addAttribute("categories", this.listingService.getCategories());
 		model.addAttribute("conditions", this.listingService.getConditions());
 		model.addAttribute("deliveries", this.listingService.getDeliveries());

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<section class="dashboard" th:fragment="body">
+	<div class="container dashboard_container">
+		<button id="show_sidebar-btn" class="sidebar_toggle">
+			<i class="uil uil-angle-right-b"></i>
+		</button>
+		<button id="hide_sidebar-btn" class="sidebar_toggle">
+			<i class="uil uil-angle-left-b"></i>
+		</button>
+		
+		<aside th:replace="~{dashboard/Aside :: menu}"></aside>
+		<main th:replace="~{dashboard/Table :: listing}"></main>
+	</div>
+</section>
+</html>

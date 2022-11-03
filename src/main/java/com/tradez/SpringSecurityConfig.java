@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,7 +21,7 @@ public class SpringSecurityConfig {
 	public AuditorAware<String> auditorAware() {
 		return new TradezAuditorAware();
 	}
-	
+
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return new CustomUserDetailsService();
@@ -41,10 +42,10 @@ public class SpringSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.formLogin().permitAll().successForwardUrl("/dashboard").failureUrl("/login?error");
+		http.formLogin().loginPage("/login.html").defaultSuccessUrl("/dashboard").failureUrl("/login.html?error");
 		http.logout().logoutUrl("/logout").permitAll();
-		
-		http.authorizeRequests().antMatchers("/webjars/**","/static/**", "/assets/**", "/signup").permitAll();
+
+		http.authorizeRequests().antMatchers("/static/**","/css/**", "/assets/**", "/signup", "/login.html").permitAll();
 		http.authorizeRequests().anyRequest().authenticated();
 
 		return http.build();

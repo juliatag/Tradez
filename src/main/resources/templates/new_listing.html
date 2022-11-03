@@ -8,7 +8,7 @@
 		</div>
 		<form th:action="@{/createListing}" method="post"
 			enctype="multipart/form-data" th:object="${listing}">
-			
+			<input type="hidden" th:field="*{id}" /> 
 			<div th:replace="~{listingForm :: listing}"></div>
 			
 		</form>

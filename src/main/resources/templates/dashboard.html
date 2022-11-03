@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="ISO-8859-1">
-<title>User #1</title>
-</head>
+<header th:replace="fragments/header :: header"></header>
 <body>
 	<p>
 		<span sec:authentication="name"></span></div>
@@ -15,7 +12,7 @@
 	<a th:href="@{/profile}"><button>View
 			Profile</button></a>
 			
-	<div th:replace="~{listingTable :: table}"></div>
+	<section th:replace="~{dashboard/Section :: body}"></section>
 		
 
 </body>

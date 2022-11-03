@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div align="center" th:fragment="table">
-	<h1>Listing</h1>
-	<a href="/createListing">Create a new listing</a> <br /> <br />
-	
-	<table border="1" cellpadding="10">
+
+<main th:fragment="listing">
+	<h2>Manage Listing</h2>
+	<table>
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -13,7 +12,8 @@
 				<th>Price</th>
 				<th>Delivery</th>
 				<th>Image</th>
-				<th>Action</th>
+				<th>Edit</th>
+				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -23,11 +23,13 @@
 				<td th:text="${listing.state}">Condition</td>
 				<td th:text="${listing.estValue}">Price</td>
 				<td th:text="${listing.delivery}">delivery</td>
-				<td><img  th:src="@{${'/loadListingImage/' + listing.id }}" width="80px" height="80px" /></td>
-				<td><a th:href="@{'/updateListing/' + ${listing.id}}">Edit</a>
-					&nbsp;&nbsp;&nbsp; <a th:href="@{'/deleteListing/' + ${listing.id}}">Delete</a></td>
+				<td><img th:src="@{${'/loadListingImage/' + listing.id }}"
+					width="40px" height="40px" /></td>
+
+				<td><a th:href="@{'/updateListing/' + ${listing.id}}" class="btn sm">Edit</a></td>
+				<td><a th:href="@{'/deleteListing/' + ${listing.id}}" class="btn sm danger">Delete</a></td>
 			</tr>
 		</tbody>
 	</table>
-</div>
+</main>
 </html>

@@ -1,5 +1,7 @@
 package com.tradez.services;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,11 +17,13 @@ public class UserService{
 	@Autowired
 	private UserRepo repo;
 	
+	@Transactional
 	public void save(User user) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
-		repo.save(user);
+		user = repo.save(user);
+		
 	}
 	
 	public User get(Long id) {
@@ -28,7 +32,7 @@ public class UserService{
 	
 	public User findByUsername() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		return this.repo.findByUsername(auth.getName());
+		return this.repo.findByEmail(auth.getName());
 	}
 
 }

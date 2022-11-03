@@ -1,6 +1,5 @@
 package com.tradez.models;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -63,7 +62,7 @@ public class User extends Auditable<String>{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}
@@ -86,6 +85,13 @@ public class User extends Auditable<String>{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password
+				+ ", confirmPassword=" + confirmPassword + ", postalCode=" + postalCode + ", description=" + description
+				+ "]";
 	}
 	
 }
