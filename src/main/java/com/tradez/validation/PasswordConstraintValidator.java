@@ -9,6 +9,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
+import org.passay.LengthRule;
 import org.passay.PasswordData;
 import org.passay.PasswordValidator;
 import org.passay.RuleResult;
@@ -24,7 +25,7 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
 	public boolean isValid(String password, ConstraintValidatorContext context) {
 		PasswordValidator validator = new PasswordValidator(Arrays.asList(
 		// at least 8 characters
-//				new LengthRule(10, 20),
+				new LengthRule(10, 20),
 
 				// at least one upper-case character
 				new CharacterRule(EnglishCharacterData.UpperCase, 1),
@@ -52,3 +53,4 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
 				.disableDefaultConstraintViolation();
 		return false;
 	}
+}	
