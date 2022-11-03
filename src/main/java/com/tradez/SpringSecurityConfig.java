@@ -43,9 +43,10 @@ public class SpringSecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.formLogin().loginPage("/login.html").defaultSuccessUrl("/dashboard").failureUrl("/login.html?error");
-		http.logout().logoutUrl("/logout").permitAll();
-
-		http.authorizeRequests().antMatchers("/static/**","/css/**", "/assets/**", "/signup", "/login.html").permitAll();
+		http.logout().clearAuthentication(true).logoutSuccessUrl("/");
+		
+		http.authorizeRequests().antMatchers("/static/**", "/css/**", "/assets/**", "/signup", "/login.html", "/logout")
+				.permitAll();
 		http.authorizeRequests().anyRequest().authenticated();
 
 		return http.build();
