@@ -772,7 +772,7 @@ input, textarea, select {
         left: -100%;
         height: 100vh;
         transition: var(--transition);
-        background: var(--color-primary);
+        background: var(--color-bg);
     }
 
     .dashboard .sidebar-toggle {
@@ -780,12 +780,12 @@ input, textarea, select {
         background: var(--color-primary-variant);
         color: var(--color-white);
         position: fixed;
-        right: 0;
-        bottom: 4rem;
+        left: 0;
+        top: 9rem;
         z-index: 1;
-        width: 2.5rem; 
-        height: 2.5rem;
-        border-radius: 50% 0 0 50%;
+        width: 5rem; 
+        height: 3rem;
+        border-radius: 0 1rem 1rem 0;
         font-size: 1.3rem;
         cursor: pointer;
         box-shadow: -1rem 0 2rem rgba(0, 0, 0, 0.4);
@@ -858,11 +858,9 @@ input, textarea, select {
 .text-center {
 text-align: center;
 }
-<<<<<<< Updated upstream
 .text-right {
     text-align: right;
     }
-
 .flex {
     display: flex;
 }
@@ -872,10 +870,6 @@ text-align: center;
 }
 .justify-content-space-between {
     justify-content:space-between;
-=======
-.justify-content-center {
-	justify-content:center;
->>>>>>> Stashed changes
 }
 
 .align-items-center {
