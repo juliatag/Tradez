@@ -65,6 +65,10 @@ public class ListingService {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		return this.listingRepo.findByCreatedBy(auth.getName());
 	}
+	public List<Listing>getByCreator(String user){
+		
+		return this.listingRepo.findByCreatedBy(user);
+	}
 	
 	public Listing findById(Long id) {
 		return this.listingRepo.findById(id).get();

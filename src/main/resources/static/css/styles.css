@@ -848,10 +848,17 @@ input, textarea, select {
 }
 }
 
+/*  listing preview page */
+.listing_preview{
+	max-width:500px;
+	
+}
+ 
 /* Utility classes*/
 .text-center {
 text-align: center;
 }
+<<<<<<< Updated upstream
 .text-right {
     text-align: right;
     }
@@ -865,6 +872,10 @@ text-align: center;
 }
 .justify-content-space-between {
     justify-content:space-between;
+=======
+.justify-content-center {
+	justify-content:center;
+>>>>>>> Stashed changes
 }
 
 .align-items-center {

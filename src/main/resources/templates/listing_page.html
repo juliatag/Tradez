@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:object="${listing}">
+
+<head>
+<meta th:replace="~{fragments/global/meta :: meta}" />
+<title>Explore</title>
+</head>
+
+<body>
+	<header th:replace="~{fragments/global/header :: header}">Global
+		Header</header>
+	<div class="my-5">
+
+		<h1 class="text-center" th:text="${listing.title}">title</h1>
+		<div class="l">
+			<div class="">
+				<img class="listing_preview"
+					th:src="@{${'/loadListingImage/' + listing.id }}" alt="">
+			</div>
+		</div>
+		<div>
+			<ul>
+				<li th:text="'Description: ' + ${listing.description}"></li>
+				<li th:text="'Category: ' + ${listing.category}"></li>
+				<li th:text="'Condition: ' + ${listing.state}"></li>
+				<li th:text="'Status: ' + ${listing.status}"></li>
+				<li th:text="'Delivery: ' + ${listing.delivery}"></li>
+			</ul>
+		</div>
+	</div>
+	<div>
+		<h1 th:text="${user.username}">title</h1>
+		<p th:text="${user.description}"></p>
+	</div>
+
+	<div>
+	<h1>Interested?</h1>
+	<h3>If you have something to trade contact the user!</h3>
+	<a target="_blank" th:href="@{mailto:{to}(to=${user.email})}" ><button class="btn">Contact</button></a>
+	</div>
+	
+
+	<footer th:replace="~{fragments/global/footer :: footer}">Global
+		Header</footer>
+	<script th:replace="~{fragments/global/scripts :: scripts}">
+		//Global Scripts
+	</script>
+</body>
+
+</html>

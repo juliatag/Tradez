@@ -21,7 +21,7 @@
 	<div class="container posts_container">
 		<article class="post"  th:each="listing : ${listings}">
 			<div class="post_thumbnail">
-				<img th:src="@{${'/loadListingImage/' + listing.id }}" alt="">
+				<a th:href="@{'/listingPage/' + ${listing.createdBy}+'/' + ${listing.id}}"><img th:src="@{${'/loadListingImage/' + listing.id }}" alt=""></a>
 			</div>
 			<div class="post_info">
 				<a href="" th:text="${listing.category}" class="category_button">Category1</a>

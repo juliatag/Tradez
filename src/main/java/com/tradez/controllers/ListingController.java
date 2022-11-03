@@ -17,12 +17,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.tradez.models.Listing;
 import com.tradez.services.ListingService;
+import com.tradez.services.UserService;
 
 @Controller
 public class ListingController {
 
 	@Autowired
 	ListingService listingService;
+	
+	@Autowired
+	UserService userService;
 
 	@GetMapping("/createListing")
 	public String createListingPage(Model model) {
@@ -59,6 +63,15 @@ public class ListingController {
 		this.listingService.deleteById(id);
 		return "redirect:/dashboard";
 	}
+	
+	@GetMapping("/listingPage/{user}/{id}")
+	public String listingPage(@PathVariable String user, @PathVariable Long id, Model model) throws IOException {
+		model.addAttribute(this.listingService.findById(id));
+		model.addAttribute(this.userService.getByUsername(user));
+		System.out.print(this.userService.getByUsername(user));
+		return "listing_page";
+	}
+	
 
 	@GetMapping(value="/loadListingImage/{id}",produces = MediaType.ALL_VALUE)
 	@ResponseBody
