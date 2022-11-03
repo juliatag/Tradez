@@ -1,26 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:object="${user}">
-<head>
-<meta charset="ISO-8859-1">
-<title>Explore</title>
-</head>
-<body>
-	<p>
-		fake logged in user: <span th:text="*{username} ?: 'Guest'">user</span>
-		<a href="/">home</a> | <a href="/explore">explore</a> | <a
-			href="/dashboard">dashboard</a>
-	</p>
-	<h1>Explore</h1>
 
-	<form th:action="@{/explore}" method="post"
-		style="max-width: 600px; margin: 0 auto;">
-		<div style="display: flex; flex-direction: column; gap: 20px;">
+<head>
+	<meta th:replace="~{fragments/global/meta :: meta}" />
+	<title>Explore</title>
+</head>
+
+<body>
+	<header th:replace="~{fragments/global/header :: header}">Global Header</header>
+	<section class="search_bar">
+		<form th:action="@{/explore}" method="post" class="container search_bar-container" action="">
 			<div>
-				<label>Search: </label> <input type="text" th:name="search"
-					th:value="${search}" />
-				<button type="submit">Search</button>
+				<i class="uil uil-search"></i>
+				<input type="search" name="search" placeholder="Search">
 			</div>
-		</div>
-	</form>
+			<button type="submit" class="btn">Go</button>
+		</form>
+	</section>
+	<section class="">
+	<div class="container posts_container">
+		<article class="post"  th:each="listing : ${listings}">
+			<div class="post_thumbnail">
+				<img th:src="@{${'/loadListingImage/' + listing.id }}" alt="">
+			</div>
+			<div class="post_info">
+				<a href="" th:text="${listing.category}" class="category_button">Category1</a>
+				<h3 class="post_title">
+					<a th:text="${listing.title}">Listing Title</a>
+				</h3>
+				<div class="post_author">
+					<div class="post_author-info">
+						<h5>estimated value: <span th:text="${listing.estValue}">Estimated value</span>$</h5>
+						<small>Sep. 20, 2022</small>
+					</div>
+				</div>
+			</div>
+		</article>
+	</div>
+	</section>
+
+	<footer th:replace="~{fragments/global/footer :: footer}">Global Header</footer>
+	<script th:replace="~{fragments/global/scripts :: scripts}">//Global Scripts</script>
 </body>
+
 </html>

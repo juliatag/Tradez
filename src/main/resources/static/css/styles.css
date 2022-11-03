@@ -780,3 +780,23 @@ input, textarea, select {
 
 }
 }
+
+/* Utility classes*/
+.text-center {
+text-align: center;
+}
+
+.my-3 {
+    margin-top:2.5em ;
+    margin-bottom:2.5em ;
+}
+
+.my-4 {
+    margin-top:3.5em;
+    margin-bottom:3.5em;
+}
+
+.my-5 {
+    margin-top:5em;
+    margin-bottom:5em;
+}

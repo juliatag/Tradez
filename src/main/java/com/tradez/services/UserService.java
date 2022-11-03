@@ -22,11 +22,26 @@ public class UserService{
 		repo.save(user);
 	}
 	
-	public User get(Long id) {
+	public User getById(Long id) {
 		return repo.findById(id).get();
 	}
 	
-	public User findByUsername() {
+	public User getByUsername(String username) {
+		return this.repo.findByUsername(username);
+	}
+	
+	public User getByEmail(String email) {
+		return this.repo.findByEmail(email);
+	}
+	
+	public User getByUsernameOrEmail(String usernameOrEmail) {
+		if(repo.findByEmail(usernameOrEmail) == null) {
+			return repo.findByUsername(usernameOrEmail);
+		}
+		return repo.findByEmail(usernameOrEmail);
+	}
+	
+	public User getAuthUser() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		return this.repo.findByUsername(auth.getName());
 	}

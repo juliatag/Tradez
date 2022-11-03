@@ -41,12 +41,11 @@ public class SpringSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.formLogin().permitAll().successForwardUrl("/dashboard").failureUrl("/login?error");
-		http.logout().logoutUrl("/logout").permitAll();
 		
-		http.authorizeRequests().antMatchers("/webjars/**","/static/**", "/assets/**", "/signup").permitAll();
-		http.authorizeRequests().anyRequest().authenticated();
-
+		http.authorizeRequests().antMatchers("/dashboard/**").authenticated().anyRequest().permitAll().and();
+		http.formLogin().usernameParameter("username").defaultSuccessUrl("/dashboard").failureUrl("/login?error").permitAll();
+		http.logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll();
+		
 		return http.build();
 	}
 }

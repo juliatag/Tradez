@@ -2,21 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Edit Profile</title>
+<title>Signup</title>
 </head>
 <body>
-	<p>
+<p>
 		fake logged in user: <span th:text="*{username} ?: 'Guest'">user</span>
 		<a href="/">home</a> | <a href="/explore">explore</a> | <a
 			href="/dashboard">dashboard</a>
 	</p>
-	<h1>Edit Profile</h1>
-	<form th:action="@{/editprofile}" th:object="${user}" method="post"
+	<h1>Sign Up</h1>
+	<form th:action="@{/signup}" th:object="${user}" method="post"
 		style="max-width: 600px; margin: 0 auto;">
 		<div style="display:flex;flex-direction:column;gap:20px;">
-		<div>
-				<label>id: </label> <input type="text" th:field="*{id}" readonly />
-			</div>
 			<div>
 				<label>username: </label> <input type="text" th:field="*{username}" />
 			</div>
@@ -25,10 +22,10 @@
 			</div>
 
 			<div>
-				<label>password: </label> <input type="password" th:field="*{password}" />
+				<label>password: </label> <input type="text" th:field="*{password}" />
 			</div>
 			<div>
-				<label>confirm password: </label> <input type="password"
+				<label>confirm password: </label> <input type="text"
 					th:field="*{confirmPassword}" />
 			</div>
 			<div>
@@ -41,7 +38,7 @@
 			</div>
 
 			<div>
-				<button type="submit">Update</button>
+				<button type="submit">Sign Up</button>
 			</div>
 		</div>
 	</form>

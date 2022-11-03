@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+
+<body>
+			<form th:fragment="user_form" th:object="${authUser}" th:action="@{/dashboard/profile/edit}" method="post">
+
+				<input th:replace="~{fragments/user/forms/common_fields :: common_fields}"/>
+		
+				<button type="submit" class="btn">Update</button>
+			</form>
+</body>
+
+</html>

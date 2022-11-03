@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div align="center" th:fragment="table">
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>Image</th>
+				<th>Title</th>
+				<th>Condition</th>
+				<th>Price</th>
+				<th>Delivery</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="listing : ${listings}">
+				<td><img th:src="@{${'/loadListingImage/' + listing.id }}" width="80px" height="80px" /></td>
+				<td th:text="${listing.title}">Title</td>
+				<td th:text="${listing.state}">Condition</td>
+				<td th:text="${listing.estValue}">Price</td>
+				<td th:text="${listing.delivery}">delivery</td>
+				<td><a th:href="@{'/updateListing/' + ${listing.id}}" class="btn sm">Edit</a></td>
+				<td><a th:href="@{'/deleteListing/' + ${listing.id}}" class="btn sm danger">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+</html>

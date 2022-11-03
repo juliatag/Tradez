@@ -74,4 +74,10 @@ public class ListingService {
 	public void deleteById(Long id) {
 		this.listingRepo.deleteById(id);
 	}
+
+	public Object findAll() {
+		// how to limit this?
+		return this.listingRepo.findAll();
+	}
+
 }

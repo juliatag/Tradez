@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta th:replace="~{fragments/global/meta :: meta}" />
+	<title>Edit Profile</title>
+</head>
+
+<body th:object="${user}">
+	<header th:replace="~{fragments/global/header :: header}">Global Header</header>
+
+	<section class="form_section">
+		<div class="container form_section-container">
+			<h2>Edit Profile</h2>
+			<form th:fragment="user_form" th:object="${authUser}" th:action="@{/dashboard/profile/edit}" method="post">
+
+				<input th:replace="~{fragments/user/common_fields :: common_fields}"/>
+		
+				<button type="submit" class="btn">Update</button>
+			</form>
+		</div>
+	</section>
+
+	<footer th:replace="~{fragments/global/footer :: footer}">Global Header</footer>
+	<script th:replace="~{fragments/global/scripts :: scripts}">//Global Scripts</script>
+</body>
+
+</html>

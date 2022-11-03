@@ -60,12 +60,12 @@ public class ListingController {
 		return "redirect:/dashboard";
 	}
 
-	@RequestMapping("/dashboard")
-	public String dashboardPage(HttpServletRequest request, Model model) {
-
-		model.addAttribute("listings", this.listingService.findByUsername());
-		return "dashboard";
-	}
+//	@RequestMapping("/dashboard")
+//	public String dashboardPage(HttpServletRequest request, Model model) {
+//
+//		model.addAttribute("listings", this.listingService.findByUsername());
+//		return "dashboard";
+//	}
 	
 	@GetMapping(value="/loadListingImage/{id}",produces = MediaType.ALL_VALUE)
 	@ResponseBody
