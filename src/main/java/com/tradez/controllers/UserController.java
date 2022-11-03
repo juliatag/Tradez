@@ -1,10 +1,12 @@
 package com.tradez.controllers;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -39,10 +41,13 @@ public class UserController {
 	}
 
 	@PostMapping("/signup")
-	public String signUp(User user, Model model) {
+	public String signUp(@Valid User user, BindingResult bindingResult, Model model) {
+
+		if (bindingResult.hasErrors()) {
+			return "signup";
+		}
 		service.save(user);
-		model.addAttribute("authUser", this.service.getAuthUser());
-	    return "signup_confirmation";
+		return "signup_confirmation";
 	}
 	
 	@RequestMapping("/login")
