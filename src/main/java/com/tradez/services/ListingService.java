@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -79,6 +82,20 @@ public class ListingService {
 	public Object findAll() {
 		// how to limit this?
 		return this.listingRepo.findAll();
+	}
+	
+	public List<Listing> search(String search){
+		List<Listing> resultList = null;
+		
+		Pageable page = PageRequest.of(0, 10, Sort.by("title"));
+		
+		if(search == null || search.isEmpty()) {
+			resultList = this.listingRepo.findAll(page).getContent();
+		}else {
+			resultList = this.listingRepo.findFirst10ByTitleLike("%" + search + "%");
+		}
+		
+		return resultList;
 	}
 
 }

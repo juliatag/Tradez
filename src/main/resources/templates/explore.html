@@ -9,10 +9,10 @@
 <body>
 	<header th:replace="~{fragments/global/header :: header}">Global Header</header>
 	<section class="search_bar">
-		<form th:action="@{/explore}" method="post" class="container search_bar-container" action="">
+		<form th:action="@{/explore}" method="post" class="container search_bar-container" >
 			<div>
 				<i class="uil uil-search"></i>
-				<input type="search" name="search" placeholder="Search">
+				<input type="search" name="search" placeholder="Search" th:value="${search}">
 			</div>
 			<button type="submit" class="btn">Go</button>
 		</form>

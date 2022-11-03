@@ -27,7 +27,7 @@ public class PagesController {
 	
 	@RequestMapping("/explore")
 	public String searchPage(@RequestParam (name = "search", required = false) String search, Model model) {
-		model.addAttribute("listings", this.listingService.findAll());
+		model.addAttribute("listings", this.listingService.search(search));
 		model.addAttribute("search",search);
 		return "explore";	
 	}
