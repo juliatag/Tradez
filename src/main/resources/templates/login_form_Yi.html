@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <header th:replace="fragments/header :: header"></header>
-  <body><section class="form_section">
+  <body>
+  <section class="form_section">
     <div class="container form_section-container">
       <h2>Sign In</h2>
       <form action="" method="post" th:action="@{/login}">
@@ -13,5 +14,6 @@
         <small>Do not have an account? <a th:href="@{/signup}">Sign Up</a></small>
       </form>
     </div>
+    </section>
     </body>
 </html>
