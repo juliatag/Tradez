@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <aside th:fragment="menu">
 	<ul>
-		<li><a href="add-post.html"><i class="uil uil-pen"></i>
-				<h5>Add post</h5> </a></li>
+		<li><a th:href="@{/createListing}"><i class="uil uil-pen"></i>
+				<h5>Add Listing</h5> </a></li>
 
 		<li><a href="dashboard.html" class="active"><i
 				class="uil uil-postcard"></i>
