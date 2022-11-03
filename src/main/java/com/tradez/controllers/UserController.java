@@ -26,7 +26,7 @@ public class UserController {
 	private UserService service;
 	@Autowired
 	private ListingService listingService;
-	
+
 	@InitBinder
 	public void initBinder(DataBinder binder) {
 		binder.addValidators(new UserValidator());
@@ -49,10 +49,10 @@ public class UserController {
 		service.save(user);
 		return "signup_confirmation";
 	}
-	
+
 	@RequestMapping("/login")
-	public String Login( Model model) {
-	    return "login_form_Yi";
+	public String Login(Model model) {
+		return "login";
 	}
 
 	@GetMapping("/profile/{username}")
@@ -75,7 +75,7 @@ public class UserController {
 		service.save(authUser);
 		return "redirect:/dashboard";
 	}
-	
+
 	@RequestMapping("/dashboard")
 	public String dashboardPage(HttpServletRequest request, Model model) {
 		model.addAttribute("authUser", this.service.getAuthUser());
