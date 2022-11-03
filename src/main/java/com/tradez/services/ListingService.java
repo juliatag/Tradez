@@ -47,8 +47,9 @@ public class ListingService {
 	public void update(Listing listing, MultipartFile file) throws IOException {
 		Listing old = this.listingRepo.findById(listing.getId()).get();
 		
-		if(file != null)
-		  listing.setImg(file.getBytes());
+		if(!file.isEmpty()) {
+			listing.setImg(file.getBytes());
+		}
 		else
 		  listing.setImg(old.getImg());
 		listing.setCreateDate(old.getCreateDate());
