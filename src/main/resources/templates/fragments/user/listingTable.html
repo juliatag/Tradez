@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div align="center" th:fragment="table">
+	<div class="flex justify-content-space-between align-items-center mb-1">
+		<h3>Manage Listings</h3>
+		<a class="btn sm" th:href="@{/createListing}"><i class="uil uil-image-plus"></i>
+			New listing
+		</a>
+	</div>
 	<table border="1" cellpadding="10">
 		<thead>
 			<tr>
-				<th>Image</th>
-				<th>Title</th>
-				<th>Condition</th>
-				<th>Price</th>
-				<th>Delivery</th>
-				<th></th>
-				<th></th>
+				<th>image</th>
+				<th>title</th>
+				<th>status</th>
+				<th>condition</th>
+				<th>value</th>
+				<th>delivery</th>
+				<th>category</th>
+				<th colspan="2"></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="listing : ${listings}">
-				<td><img th:src="@{${'/loadListingImage/' + listing.id }}" width="80px" height="80px" /></td>
+				<td><img th:src="@{${'/loadListingImage/' + listing.id }}" width="40px" height="40px" /></td>
 				<td th:text="${listing.title}">Title</td>
+				<td th:text="${listing.status}">status</td>
 				<td th:text="${listing.state}">Condition</td>
-				<td th:text="${listing.estValue}">Price</td>
+				<td><span th:text="${listing.estValue}">Value</span>$</td>
 				<td th:text="${listing.delivery}">delivery</td>
-				<td><a th:href="@{'/updateListing/' + ${listing.id}}" class="btn sm">Edit</a></td>
-				<td><a th:href="@{'/confirmDelete/' + ${listing.id}}" class="btn sm danger">Delete</a></td>
+				<td th:text="${listing.category}">category</td>
+				<td class="text-right"><a th:href="@{'/updateListing/' + ${listing.id}}" class="btn sm">Edit</a></td>
+				<td class="text-right"><a th:href="@{'/confirmDelete/' + ${listing.id}}" class="btn sm danger">Delete</a></td>
 			</tr>
 		</tbody>
 	</table>
