@@ -12,4 +12,5 @@ public interface ListingRepo extends JpaRepository<Listing, Long> {
 	
 	
 	List<Listing> findByCreatedBy(String username);
+	
 }

@@ -785,6 +785,9 @@ input, textarea, select {
 .text-center {
 text-align: center;
 }
+.justify-content-center{
+	justify-content:center;
+}
 
 .my-3 {
     margin-top:2.5em ;
