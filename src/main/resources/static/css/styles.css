@@ -33,7 +33,7 @@
     padding: 0; 
     outline: 0; 
     border: 0;
-    appearance:none;
+    /* appearance:none; */
     list-style: none;
     text-decoration: none;
     box-sizing: border-box;
@@ -157,6 +157,33 @@ img {
     opacity: 0;
     transition: var(--transition);
 }
+/* ******** listing preview page ***********/
+.listing-details-section img{
+	width:100%;
+	
+}
+/*  single listing page */
+.listing-details-section {
+	display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.listing-profile-section {
+	display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.listing-profile-section .contrast{
+	background: var(--color-gray-900);
+	padding:3rem;
+	display:flex;
+	flex-direction:column;
+	gap:1.5rem;
+}
+/* ******** listing preview page ***********/
+
 /* show nav ul when nav profile is hovered  */
 .nav_profile:hover > ul {
     visibility: visible;
@@ -733,14 +760,18 @@ input, textarea, select {
         display: none;
     }
 
-    /*  single listing page */
-    .listing-details-section {
-        grid-template-columns: 1fr 1fr;
-    }
+ /*  single listing page */
+	.listing-details-section {
+		display:grid;
+    	grid-template-columns:  1fr;
+    	gap: 4rem;
+	}
 
-    .listing-profile-section {
-        grid-template-columns: 1fr 1fr;
-    }
+	.listing-profile-section {
+		display:grid;
+    	grid-template-columns: 1fr;
+    	gap: 4rem;
+	}
 
   
 
@@ -898,20 +929,6 @@ width: 80%;
 }
 
 /*  listing preview page */
-.listing_preview{
-	max-width:500px;
-	
-}
-/*  single listing page */
-.listing-details-section {
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-}
-
-.listing-profile-section {
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-}
 
 
 /* Utility classes*/
