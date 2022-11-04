@@ -58,6 +58,7 @@ public class UserController {
 	@GetMapping("/profile/{username}")
 	public String getUserProfile(@PathVariable String username, Model model) {
 		model.addAttribute("user", this.service.getByUsername(username));
+		model.addAttribute("listings", this.listingService.findByUsername(username));
 		model.addAttribute("authUser", this.service.getAuthUser());
 		return "profile";
 	}

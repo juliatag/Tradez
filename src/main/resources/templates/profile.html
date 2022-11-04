@@ -1,48 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:object="${user}">
 
 <head>
+	<!-- SITE META TAGS AND STILES -->
 	<meta th:replace="~{fragments/global/meta :: meta}" />
-	<title>Tradez</title>
+	<title>Profile</title>
 </head>
 
 <body>
+	<!-- SITE HEADER -->
 	<header th:replace="~{fragments/global/header :: header}">Global Header</header>
 
-	<section class="singlepost" th:object="${user}">
-		<div class="container singlepost_container">
-			<h2 th:text="*{username}">Username</h2>
-			<div>
-				<p><b>email : </b><span th:text="*{email}"></span></p>
-				<p><b>postal code : </b><span th:text="*{postalCode}"></span></p>
-			</div>
-			<p th:text="*{description}">Description</p>
+	<!-- USER PUBLIC PROFILE DETAILS -->
+	<section class="featured text-center" th:object="${user}">
+		<div class="container  mb-5">
+
+			<!-- User Details -->
+			<h1 th:text="${user.username}">Username</h1>
+			<a th:href="@{mailto:} + ${user.email}" target="_blank"><i class="uil uil-envelope-add"></i> Email</a>  |
+			<a th:href="${'http://maps.google.com/maps?q=Postal+Code+' + user.postalCode.substring(0,3)}" target="_blank"><i class="uil uil-map"></i> Location</a>
+			<p th:text="${user.description}" class="post_body my-3">Profile description...</p>
 		</div>
 	</section>
-	<section class="">
-		<div class="container posts_container">
-			<article class="post"  th:each="listing : ${listings}">
-				<div class="post_thumbnail">
-					<img th:src="@{${'/loadListingImage/' + listing.id }}" alt="">
-				</div>
-				<div class="post_info">
-					<a href="" th:text="${listing.category}" class="category_button">Category1</a>
-					<h3 class="post_title">
-						<a th:text="${listing.title}">Listing Title</a>
-					</h3>
-					<div class="post_author">
-						<div class="post_author-info">
-							<h5>estimated value: <span th:text="${listing.estValue}">Estimated value</span>$</h5>
-							<small>Sep. 20, 2022</small>
-						</div>
-					</div>
-				</div>
-			</article>
-		</div>
-		</section>
 
-	<footer th:replace="~{fragments/global/footer :: footer}">Global Header</footer>
-	<script th:replace="~{fragments/global/scripts :: scripts}">//Global Scripts</script>
+	<!-- USER LISTINGS SECTION -->
+	<section>
+		<h2 class="text-center mb-2">Listings</h2>
+		<div class="container posts_container">
+			<!-- User Listings -->
+			<div th:each="listing : ${listings}">
+				<article class="post" th:replace="~{fragments/listing/listing_preview :: listing_preview}">List of Listings</article>
+			</div>
+		</div>
+	</section>
+
+	
+
+	<!-- SITE FOOTER -->
+	<footer th:replace="~{fragments/global/footer :: footer}">Global Footer</footer>
+	<!-- GLOBAL SCRIPTS -->
+	<script th:replace="~{fragments/global/scripts :: scripts}"></script>
 </body>
 
 </html>
+

@@ -2,17 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org" th:object="${user}">
 
 <head>
-<meta th:replace="~{fragments/global/meta :: meta}" />
-<title>Home</title>
+	<!-- SITE META TAGS AND STILES -->
+	<meta th:replace="~{fragments/global/meta :: meta}" />
+	<title>Home</title>
 </head>
 
 <body>
-	<header th:replace="~{fragments/global/header :: header}">Global
-		Header</header>
+	<!-- SITE HEADER -->
+	<header th:replace="~{fragments/global/header :: header}">Global Header</header>
+
+	<!-- WELCOME SECTIOON -->
 	<section class="featured text-center">
-		<div class="container featured_container">
-			<div th:if="${#authorization.expression('!isAuthenticated()')}"
-				class="container">
+		<div class="container featured_container mb-5">
+			
+			<div th:if="${#authorization.expression('!isAuthenticated()')}" class="container my-5">
+				<!-- for NON logged in users -->
 				<h1 class="">Trade your stuff</h1>
 				<p class="post_body my-3">Lorem ipsum dolor, sit amet consectetur
 					adipisicing elit. Dolores facere, similique laborum voluptates
@@ -20,76 +24,46 @@
 					soluta non dolorum velit tenetur, iure magnam a.</p>
 				<a href="/signup" class=" btn md">Sign Up</a>
 			</div>
-			<div th:if="${#authorization.expression('isAuthenticated()')}"
-				class="container">
+			
+			<div th:if="${#authorization.expression('isAuthenticated()')}" class="container my-5">
+				<!-- for LOGGED IN users -->
 				<h1>
-					Hi <span sec:authentication="name"></</span>
+					Hi <span sec:authentication="name"></span>
 				</h1>
 				<p class="post_body my-3">Here to manage your listings? Go to your
 					dashboard.</p>
 				<a href="/dashboard" class="btn md">Dashboard</a>
 			</div>
-		</div>
-		</div>
-	</section>
-	<section class="search_bar ">
-		<form th:action="@{/explore}" method="post"
-			class="container search_bar-container" action="">
-			<div>
-				<i class="uil uil-search"></i> <input type="search" name="search"
-					placeholder="Search">
-			</div>
-			<button type="submit" class="btn">Go</button>
-		</form>
-	</section>
-	<section class="">
-	<div class="my-3 container text-center">
-	<h3>Looking for something?</h3>
-		<p class="post_body ">take a look at the new listings or search.</p>
-	</div>
-		<div class="container posts_container">
-			<article class="post" th:each="listing : ${listings}">
-				<div class="post_thumbnail">
-					<img th:src="@{${'/loadListingImage/' + listing.id }}" alt="">
-				</div>
-				<div class="post_info">
-					<a href="" th:text="${listing.category}" class="category_button">Category1</a>
-					<h3 class="post_title">
-						<a th:text="${listing.title}">Listing Title</a>
-					</h3>
-					<div class="post_author">
-						<div class="post_author-info">
-							<h5>
-								estimated value: <span th:text="${listing.estValue}">Estimated
-									value</span>$
-							</h5>
-							<small>Sep. 20, 2022</small>
-						</div>
-					</div>
-				</div>
-			</article>
+
 		</div>
 	</section>
 
-	<footer th:replace="~{fragments/global/footer :: footer}">Global
-		Header</footer>
-	<script th:replace="~{fragments/global/scripts :: scripts}">
-		//Global Scripts
-	</script>
+
+
+	<!-- LISTINGS SECTION -->
+	<section class="my-5">
+		<!-- Title and subtitle -->
+		<div class="container text-center">
+			<h3>Looking for something?</h3>
+			<p class="post_body ">take a look at the new listings or search.</p>
+		</div>
+
+		<!-- SEARCH BAR -->
+		<section class="post" th:replace="~{fragments/listing/search_bar :: search_bar}">Search Bar</section>
+
+		<!-- Featured Listings -->
+		<div class="container posts_container">
+			<div th:each="listing : ${listings}">
+				<article class="post" th:replace="~{fragments/listing/listing_preview :: listing_preview}">List of
+					Listings</article>
+			</div>
+		</div>
+	</section>
+
+	<!-- SITE FOOTER -->
+	<footer th:replace="~{fragments/global/footer :: footer}">Global Footer</footer>
+	<!-- GLOBAL SCRIPTS -->
+	<script th:replace="~{fragments/global/scripts :: scripts}"></script>
 </body>
 
 </html>
-
-
-<!-- <tbody>
-	<tr th:each="listing : ${listings}">
-		<td><img th:src="@{${'/loadListingImage/' + listing.id }}" width="80px" height="80px" /></td>
-		<td th:text="${listing.title}">Title</td>
-		<td th:text="${listing.state}">Condition</td>
-		<td th:text="${listing.estValue}">Price</td>
-		<td th:text="${listing.delivery}">delivery</td>
-		<td th:text="${listing.category}">delivery</td>
-		<td><a th:href="@{'/updateListing/' + ${listing.id}}" class="btn sm">Edit</a></td>
-		<td><a th:href="@{'/deleteListing/' + ${listing.id}}" class="btn sm danger">Delete</a></td>
-	</tr>
-</tbody> -->

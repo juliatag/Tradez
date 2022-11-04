@@ -60,10 +60,14 @@ public class ListingService {
 		this.listingRepo.save(listing);
 	}
 	
-	
+	//finds by Authenticated User
 	public List<Listing> findByUsername(){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		return this.listingRepo.findByCreatedBy(auth.getName());
+	}
+	//finds by any user name
+	public Object findByUsername(String username) {
+		return this.listingRepo.findByCreatedBy(username);
 	}
 	public List<Listing>getByCreator(String user){
 		
@@ -101,5 +105,7 @@ public class ListingService {
 		
 		return resultList;
 	}
+
+	
 
 }

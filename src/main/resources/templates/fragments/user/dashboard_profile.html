@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>User Dashboard</title>
+</head>
+
+<body>
+			<!-- toggle button -->
+			<div th:fragment="toggle_btn" class="sidebar-toggle-btn">
+				<button id="show_sidebar-btn" class="sidebar-toggle">
+					<i class="uil uil-user"></i><i class="uil uil-angle-right-b"></i>
+				</button>
+				<button id="hide_sidebar-btn" class="sidebar-toggle">
+					<i class="uil uil-angle-left-b"></i>
+				</button>
+			</div>
+
+			<!-- Sidebar Area -->
+			<aside th:fragment="profile_sidebar">
+
+				<!-- Profile details -->
+				<div class="mb-3">
+					<h3 th:text="*{username}">Username</h3>
+					<p><b>email : </b><span th:text="*{email}"></span></p>
+					<p><b>postal code : </b><span th:text="*{postalCode}"></span></p>
+				</div>
+
+				<!-- Profile Action buttons -->
+				<div class="dash-btns">
+					<a th:href="@{/profile/{id}(id=*{username})}"><i class="uil uil-user"></i>
+						<h5>Public Profile</h5>
+					</a>
+					<a th:href="@{/dashboard/profile/edit}"><i class="uil uil-pen"></i>
+						<h5>Edit profile</h5>
+					</a>
+				</div>
+				
+			</aside>		
+</body>
+
+</html>

@@ -2,45 +2,43 @@
 <html xmlns:th="http://www.thymeleaf.org" th:object="${user}">
 
 <head>
+	<!-- SITE META TAGS AND STILES -->
 	<meta th:replace="~{fragments/global/meta :: meta}" />
 	<title>Explore</title>
 </head>
 
 <body>
+	<!-- SITE HEADER -->
 	<header th:replace="~{fragments/global/header :: header}">Global Header</header>
-	<section class="search_bar">
-		<form th:action="@{/explore}" method="post" class="container search_bar-container" >
-			<div>
-				<i class="uil uil-search"></i>
-				<input type="search" name="search" placeholder="Search" th:value="${search}">
-			</div>
-			<button type="submit" class="btn">Go</button>
-		</form>
-	</section>
-	<section class="">
-	<div class="container posts_container">
-		<article class="post"  th:each="listing : ${listings}">
-			<div class="post_thumbnail">
-				<a th:href="@{'/listingPage/' + ${listing.createdBy}+'/' + ${listing.id}}"><img th:src="@{${'/loadListingImage/' + listing.id }}" alt=""></a>
-			</div>
-			<div class="post_info">
-				<a href="" th:text="${listing.category}" class="category_button">Category1</a>
-				<h3 class="post_title">
-					<a th:text="${listing.title}">Listing Title</a>
-				</h3>
-				<div class="post_author">
-					<div class="post_author-info">
-						<h5>estimated value: <span th:text="${listing.estValue}">Estimated value</span>$</h5>
-						<small>Sep. 20, 2022</small>
-					</div>
-				</div>
-			</div>
-		</article>
-	</div>
+
+	<!-- SEARCH AND EXPLORE SECTION -->
+	<section class="featured text-center">
+		<div class="container  mb-5">
+
+			<!-- Title and subtitle -->
+			<h1>Search and Explore</h1>
+			<p class="post_body ">take a look at what other people have to trade</p>
+
+			<!-- SEARCH BAR -->
+			<div class="post" th:replace="~{fragments/listing/search_bar :: search_bar}">Search Bar</div>
+
+		</div>
 	</section>
 
-	<footer th:replace="~{fragments/global/footer :: footer}">Global Header</footer>
-	<script th:replace="~{fragments/global/scripts :: scripts}">//Global Scripts</script>
+	<!-- RESULTS SECTION -->
+	<section>
+		<div class="container posts_container">
+			<!-- Featured Listings -->
+			<div th:each="listing : ${listings}">
+				<article class="post" th:replace="~{fragments/listing/listing_preview :: listing_preview}">List of Listings</article>
+			</div>
+		</div>
+	</section>
+
+	<!-- SITE FOOTER -->
+	<footer th:replace="~{fragments/global/footer :: footer}">Global Footer</footer>
+	<!-- GLOBAL SCRIPTS -->
+	<script th:replace="~{fragments/global/scripts :: scripts}"></script>
 </body>
 
 </html>

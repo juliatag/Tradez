@@ -7,20 +7,21 @@
 
 <body>
 
-	<article th:fragment="listing_preview" class="post">
+	<article th:fragment="listing_preview" class="post text-center">
 		<div class="post_thumbnail">
-			<img th:src="@{${'/loadListingImage/' + listing.id }}" alt="">
+			<a th:href="@{'/listingPage/' + ${listing.createdBy}+'/' + ${listing.id}}"><img th:src="@{${'/loadListingImage/' + listing.id }}" alt=""></a>
+			
 		</div>
 		<div class="post_info">
 
 			<h3 class="post_title">
-				<a th:text="${listing.title}">Listing Title</a>
+			<a th:text="${listing.title}" th:href="@{'/listingPage/' + ${listing.createdBy}+'/' + ${listing.id}}">Listing Title</a>
+
 			</h3>
 
 			<small th:text="${listing.category}">Category</small> | <small>Sep.
 				20, 2022</small> | <small><span th:text="${listing.estValue}">Estimated
 					value</span>$</small>
-
 
 		</div>
 	</article>
@@ -28,17 +29,3 @@
 </body>
 
 </html>
-
-
-<!-- <tbody>
-	<tr th:each="listing : ${listings}">
-		<td><img th:src="@{${'/loadListingImage/' + listing.id }}" width="80px" height="80px" /></td>
-		<td th:text="${listing.title}">Title</td>
-		<td th:text="${listing.state}">Condition</td>
-		<td th:text="${listing.estValue}">Price</td>
-		<td th:text="${listing.delivery}">delivery</td>
-		<td th:text="${listing.category}">delivery</td>
-		<td><a th:href="@{'/updateListing/' + ${listing.id}}" class="btn sm">Edit</a></td>
-		<td><a th:href="@{'/deleteListing/' + ${listing.id}}" class="btn sm danger">Delete</a></td>
-	</tr>
-</tbody> -->
