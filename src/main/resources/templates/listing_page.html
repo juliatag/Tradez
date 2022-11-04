@@ -12,6 +12,9 @@
 	<div class="my-5">
 
 		<h1 class="text-center" th:text="${listing.title}">title</h1>
+		<a
+			th:href="${'http://maps.google.com/maps?q=Postal+Code+' + user.postalCode.substring(0,3)}"
+			target="_blank"><i class="uil uil-map"></i> Location</a>
 		<div class="l">
 			<div class="">
 				<img class="listing_preview"
@@ -34,11 +37,12 @@
 	</div>
 
 	<div>
-	<h1>Interested?</h1>
-	<h3>If you have something to trade contact the user!</h3>
-	<a target="_blank" th:href="@{mailto:{to}(to=${user.email})}" ><button class="btn">Contact</button></a>
+		<h1>Interested?</h1>
+		<h3>If you have something to trade contact the user!</h3>
+		<a target="_blank" th:href="@{mailto:{to}(to=${user.email})}"><button
+				class="btn">Contact</button></a>
 	</div>
-	
+
 
 	<footer th:replace="~{fragments/global/footer :: footer}">Global
 		Header</footer>
