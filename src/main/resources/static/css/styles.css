@@ -33,7 +33,7 @@
     padding: 0; 
     outline: 0; 
     border: 0;
-    appearance: 0; 
+    appearance:none;
     list-style: none;
     text-decoration: none;
     box-sizing: border-box;
@@ -69,12 +69,12 @@ h1, h2, h3, h4, h5 {
 
 h1 {
     font-size: 3rem; 
-    margin: 1 rem 0; 
+    margin: 1rem 0;
 }
 
 h2 {
     font-size: 1.7rem; 
-    margin: 1 rem 0; 
+    margin: 1rem 0;
 }
 
 h3 {
@@ -147,12 +147,12 @@ img {
 
 }
 .nav_profile ul {
-    position: absolute; 
-    top: 140%; 
-    right: 0; 
-    display: flex; 
+       position: absolute;
+    top: 47px;
+    right: 0;
+    display: flex;
     flex-direction: column;
-    box-shadow: 0 3rem 3rem rgba(0, 0, 0, 0.4);
+    box-shadow: 0 3rem 3rem rgb(0 0 0 / 40%);
     visibility: hidden;
     opacity: 0;
     transition: var(--transition);
@@ -164,7 +164,7 @@ img {
 }
 
 .nav_profile ul li a {
-    padding: 1 rem;
+    padding: 1rem;
     background-color: var(--color-gray-900);
     display: block; 
     width: 100%; 
@@ -172,7 +172,8 @@ img {
 
 .nav_profile ul li:last-child a {
     background: var(--color-red);
-    color:var(--color-bg); 
+    color:var(--color-white); 
+    font-weight: 400;
 }
 
 /* Category button  */
@@ -224,11 +225,16 @@ img {
 
 .featured_container {
     display: grid; 
-    grid-template-columns: 1 fr 1fr;
+    grid-template-columns: 1fr;
     gap: 4rem; 
 }
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+}
 
-.featured .post_thembnail {
+.featured .post_thumbnail {
     height: fit-content; 
 
 }
@@ -432,7 +438,7 @@ footer ul a:hover {
 
 }
 .alert_message.success{
-    background: var(--color-green-light);
+    background: var(--color-green);
     color: var(--color-green);
 
 }
@@ -472,6 +478,7 @@ input, textarea, select {
 
 /* dashboard */
 .dashboard{
+    font-size: 0.7rem;
 
 }
 .sidebar-toggle-btn {
@@ -483,9 +490,9 @@ input, textarea, select {
 
 .dashboard_container {
     display: grid;
-    grid-template-columns: 14rem auto;
-    gap: 1rem;
-    background: var(--color-gray-900);
+    grid-template-columns: 10rem auto;
+    gap: 3rem;
+    /* background: var(--color-gray-900); */
     padding: 2rem;
 }
 .dashboard aside a{
@@ -500,14 +507,20 @@ input, textarea, select {
     border-bottom: 1px solid var(--color-gray-900);
 }
 .dashboard aside a:hover {
-    background: --color-gray-700; 
+    background: var(--color-gray-700);
 
 }
 .dashboard aside a.active {
     background: var(--color-gray-900);
 }
 .dashboard main {
-    margin-left: 1.5rem;
+    /*!!!! this offsets all the layout, increase existing grid gap instead !!!!*/
+    /*margin-left: 1.5rem;*/
+    background-color: #48459d;
+    padding: 20px;
+    border-radius: 10px;
+
+
 }
 .dashboard main h2 {
     margin: 0 0 2rem 0;
@@ -582,10 +595,10 @@ input, textarea, select {
     }
     .nav_items li {
         width: 100%;
-        height: 4.5rem;
+        height: 3rem;
         display: flex;
         align-items: center;
-        box-shadow: -2rem 3rem 7rem rgba(0, 0, 0, 0.7);
+        box-shadow: -1rem 1rem 3rem rgba(0, 0, 0, 0.7);
         background: var(--color-gray-900);
         border-top: 1px solid var(--color-bg);
         animation: animateDropdown 400ms 0s ease forwards; 
@@ -594,16 +607,22 @@ input, textarea, select {
 
     }
     .nav_items li:nth-child(2){
-        animation-delay: 200ms;
+        animation-delay: 100ms;
     }
     .nav_items li:nth-child(3){
-        animation-delay: 400ms;
+        animation-delay: 200ms;
     }
     .nav_items li:nth-child(4){
-        animation-delay: 600ms;
+        animation-delay: 300ms;
     }
     .nav_items li:nth-child(5){
-        animation-delay: 800ms;
+        animation-delay: 400ms;
+    }
+    .nav_items li:nth-child(6){
+        animation-delay: 500ms;
+    }
+    .nav_items li:nth-child(7){
+        animation-delay: 600ms;
     }
 
 
@@ -642,6 +661,7 @@ input, textarea, select {
     }
 
     .featured_container {
+
         gap: 3rem; 
     }
     .posts_container {
@@ -666,6 +686,7 @@ input, textarea, select {
         padding: 0;
         /* background: transparent; */
         width: 90%;
+        gap: 0;
     }
   
     .dashboard aside {
@@ -712,7 +733,14 @@ input, textarea, select {
         display: none;
     }
 
-    
+    /*  single listing page */
+    .listing-details-section {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .listing-profile-section {
+        grid-template-columns: 1fr 1fr;
+    }
 
   
 
@@ -858,7 +886,14 @@ width: 80%;
   display: none;
 }
 
+    /*  single listing page */
+    .listing-details-section {
+        grid-template-columns: 1fr;
+    }
 
+    .listing-profile-section {
+        grid-template-columns: 1fr;
+    }
 
 }
 
@@ -867,7 +902,18 @@ width: 80%;
 	max-width:500px;
 	
 }
- 
+/*  single listing page */
+.listing-details-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.listing-profile-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+
 /* Utility classes*/
 .text-center {
 text-align: center;
@@ -939,7 +985,11 @@ text-align: center;
 .dash-btns {
     display: flex;
     flex-direction: column;
+    justify-content: stretch;
     gap: 5px;
+}
+.dash-btns btn{
+width: 100%;
 }
 
 .dash-btns a:hover {

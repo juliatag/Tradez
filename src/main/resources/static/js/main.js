@@ -4,7 +4,7 @@ const closeNavBtn = document.querySelector('#close_nav-btn');
 // open nav 
 const openNav = () => { 
     navItems.style.display = 'flex'; 
-    openNav.style.display = 'none'; 
+    openNavBtn.style.display = 'none';
     closeNavBtn.style.display = 'inline-block';
 
 }
@@ -12,7 +12,7 @@ const openNav = () => {
 // close nav 
 const closeNav = () => { 
     navItems.style.display = 'none'; 
-    openNav.style.display = 'inline-block'; 
+    openNavBtn.style.display = 'inline-block';
     closeNavBtn.style.display = 'none';
 
 }

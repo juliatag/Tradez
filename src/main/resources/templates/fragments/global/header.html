@@ -7,14 +7,14 @@
 		  <ul class="nav_items">
 			<li><a href="/explore">Explore</a></li>
 			<li th:if="${#authorization.expression('isAuthenticated()')}"><a th:href="@{/dashboard}">Dashboard</a></li>
-			<li th:if="${#authorization.expression('!isAuthenticated()')}"><a th:href="@{/login}">Login</a></li>
+			<li class="nav_login" th:if="${#authorization.expression('!isAuthenticated()')}"><a th:href="@{/login}">Login</a></li>
+			<li class="nav_signup" th:if="${#authorization.expression('!isAuthenticated()')}"><a th:href="@{/signup}">Signup</a></li>
 			<li th:if="${#authorization.expression('isAuthenticated()')}" class="nav_profile">
-				<div class="">
-				 <span sec:authentication="name"></span>
+				<div class="nav_username">
+					<a th:href="@{/dashboard}"><div sec:authentication="name"></div></a>
 				</div>
 				<ul>
-				  <li><a th:href="@{/dashboard}">Dashboard</a></li>
-				  <li><a th:href="@{/logout}">Logout</a></li>
+				  <li><a class="nav_logout" th:href="@{/logout}">Logout</a></li>
 				</ul>
 			  </li>
 		</ul>
