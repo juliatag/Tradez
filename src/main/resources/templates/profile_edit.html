@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -11,10 +12,41 @@
 
 	<section class="form_section">
 		<div class="container form_section-container">
-			<h2 class="my-1">Edit Profile</h2>
-			<form th:fragment="user_form" th:object="${authUser}" th:action="@{/dashboard/profile/edit}" method="post">
+			<h2>Edit Profile</h2>
+			<form th:fragment="user_form" th:object="${user}" th:action="@{/dashboard/profile/edit}" method="post">
 
-				<input th:replace="~{fragments/user/common_fields :: common_fields}"/>
+				<!-- EMAIL -->
+		<input type="email" th:field="*{email}" placeholder="Email" readonly />
+		<span class="alert_message error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</span>
+
+		<!-- USERNAME -->
+		<input type="text" th:field="*{username}" placeholder="Username" readonly />
+		<span class="alert_message error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username
+			error</span>
+
+		<!-- PASSWORD -->
+		<input type="password" th:field="*{password}" placeholder="Enter password" />
+		<ul class="alert_message error" th:each="error: ${#fields.errors('password')}">
+			<li th:each="message : ${error.split(',')}">
+				<p th:text="${message}">password error</p>
+			</li>
+		</ul>
+
+		<!-- CONFIRM PASSWORD -->
+		<input type="password" th:field="*{confirmPassword}" placeholder="Confirm password" />
+		<ul class="alert_message error" th:each="error: ${#fields.errors('confirmPassword')}">
+			<li th:each="message : ${error.split(',')}">
+				<p th:text="${message}">confirmation error</p>
+			</li>
+		</ul>
+
+		<!-- POSTAL CODE -->
+		<input type="text" th:field="*{postalCode}" placeholder="Postal Code" />
+		<span class="alert_message error" th:if="${#fields.hasErrors('postalCode')}"
+			th:errors="*{postalCode}">postalCode error</span>
+
+		<!-- SUBMIT BUTTON -->
+		<textarea rows="10" th:field="*{description}" placeholder="Description about youself"></textarea>
 		
 				<button type="submit" class="btn">Update</button>
 			</form>
