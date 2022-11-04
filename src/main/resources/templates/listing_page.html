@@ -9,12 +9,13 @@
 <body>
 	<header th:replace="~{fragments/global/header :: header}">Global
 		Header</header>
+	<div class="my-3"> <!-- DO NOT REMOVE, FOR PADDING -->
+		<p>&;nbsp</p>
+	</div>
 
-	<div class="container my-5 text-center">
+	<div class="container my-5 mb-4 text-center">
 		<h1 class="" th:text="${listing.title}">title</h1>
-		<a
-			th:href="${user.postalCode.substring(0,3)}"
-			target="_blank"><i class="uil uil-map"></i> Location </a>
+		
 	</div>
 
 	<div class="container my-3">
@@ -23,14 +24,14 @@
 				<img class="listing_preview"
 					th:src="@{${'/loadListingImage/' + listing.id }}" alt="">
 			</div>
-		
+
 
 			<div>
 				<ul class="contrast">
 
 					<li><h3>Description:</h3> <span
 						th:text="${listing.description}"></span></li>
-				
+
 					<li><b> Category: </b> <span th:text="${listing.category}"></span></li>
 					<li><b> Condition: </b> <span th:text="${listing.state}"></span></li>
 					<li><b> Status: </b> <span th:text="${listing.status}"></span></li>
@@ -54,8 +55,10 @@
 			</div>
 		</div>
 	</div>
-<!-- <article th:replace="~{fragments/user/map :: map}">Map</article>
-	<article></article> -->
+	<div class="my-5">
+	<article th:replace="~{fragments/user/map :: map}">Map</article>
+	<article></article>
+	</div>
 
 	<footer th:replace="~{fragments/global/footer :: footer}">Global
 		Header</footer>

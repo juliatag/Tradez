@@ -9,12 +9,17 @@
   loading="lazy"
   allowfullscreen
   referrerpolicy="no-referrer-when-downgrade"
-  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB-hhpZwpAACL57knMHdo-o-52kWrq672s
-    &q=" + 'th:href="${user.postalCode.substring(0,3)}"'>
+  th:src="@{${'https://www.google.com/maps/embed/v1/place?key=AIzaSyB-hhpZwpAACL57knMHdo-o-52kWrq672s
+    &q=Postal+Code+' + user.postalCode.substring(0,3)}}">
 </iframe>
+<!-- "${user.postalCode.substring(0,3)}" -->
 
 </div>
 
 </html>
 
 <!-- AIzaSyB-hhpZwpAACL57knMHdo-o-52kWrq672s -->
+
+<!-- <a
+	th:href="${'http://maps.google.com/maps?q=Postal+Code+' + user.postalCode.substring(0,3)}"
+	target="_blank"><i class="uil uil-map"></i> Location</a> -->
