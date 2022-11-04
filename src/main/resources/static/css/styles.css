@@ -168,6 +168,13 @@ img {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
 }
+.listing-details-section .contrast{
+	background: var(--color-gray-900);
+	padding:3rem;
+	display:flex;
+	flex-direction:column;
+	gap:1.5rem;
+}
 
 .listing-profile-section {
 	display:grid;
@@ -182,6 +189,7 @@ img {
 	flex-direction:column;
 	gap:1.5rem;
 }
+
 /* ******** listing preview page ***********/
 
 /* show nav ul when nav profile is hovered  */
