@@ -23,6 +23,7 @@ public class ListingService {
 	
 	public static List<String> deliveries = Arrays.asList("Yes","No");
 	public static List<String> conditions = Arrays.asList("New","Like New","Good","Fair");
+	public static List<String> status = Arrays.asList("Available","Traded");
 
 	@Autowired
 	CategoryRepo categoryRepo;
@@ -32,6 +33,9 @@ public class ListingService {
 	
 	public List<String> getDeliveries(){
 		return deliveries;
+	}
+	public List<String> getStatus(){
+		return status;
 	}
 	
 	public List<String> getConditions(){

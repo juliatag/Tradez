@@ -12,7 +12,7 @@
 			>
 
 				<input type="hidden" th:field="*{id}" /> 
-				
+				<label>Title</label>
 				<input type="text" th:field="*{title}" placeholder="Title"/> 
 				<span class="alert_message error"
 					th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title
@@ -25,7 +25,7 @@
 						th:value="${ca.id}">
 				   </select> 
 				</div>
-				
+				<label>Estimated Value</label>
 				<input type="number" th:field="*{estValue}" placeholder="Estimate value"/> 
 				<span
 					class="alert_message error"
@@ -40,10 +40,12 @@
 						type="radio" th:field="*{delivery}" th:value="${deli}"
 						th:text="${deli}"></li>
 				  </ul>
-                </div>				
+                </div>	
+                
+                <input type="hidden" name="status"  id="status" value="available"/>
 
                 <div class="form_control">
-                  <label for="conditions">Conditions</label> 
+                  <label for="conditions">Condition</label> 
 				    
 				  <ul id="conditions" style="list-style: none">
 					<li th:each="condition: ${conditions}"
@@ -52,8 +54,8 @@
 						th:text="${condition}"></li>
 				  </ul>
                 </div>
-				
-				<textarea rows="10" th:field="*{description}" placehoder="description"></textarea>
+				<label>Description</label>
+				<textarea rows="10" th:field="*{description}" placehoder="description" placeholder="Describe the object here"></textarea>
 
 				<div class="form_control">
 					<label for="thumbnail">Change thumbnail</label> 

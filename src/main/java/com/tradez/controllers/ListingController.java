@@ -37,7 +37,7 @@ public class ListingController {
 	@GetMapping("/updateListing/{id}")
 	public String updateListingPage(@PathVariable("id") Long id,Model model) {
 		setupModel(model,"Edit Listing",this.listingService.findById(id));
-		return "listing_form";
+		return "update_listing_form";
 	}
 	
 	@PostMapping("/saveListing")
@@ -86,5 +86,6 @@ public class ListingController {
 		model.addAttribute("categories", this.listingService.getCategories());
 		model.addAttribute("conditions", this.listingService.getConditions());
 		model.addAttribute("deliveries", this.listingService.getDeliveries());
+		model.addAttribute("status", this.listingService.getStatus());
 	}
 }
