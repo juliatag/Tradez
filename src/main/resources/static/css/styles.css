@@ -160,6 +160,7 @@ img {
 /* ******** listing preview page ***********/
 .listing-details-section img{
 	width:100%;
+
 	
 }
 /*  single listing page */
@@ -232,9 +233,13 @@ img {
     border-radius: var(--card-border-radius-5) 0;
     border: 1rem solid var(--color-gray-900); 
     overflow: hidden; 
-    margin-bottom: 1.6rem; 
-
+    margin-bottom: 1.6rem;
 }
+
+.post_thumbnail img{
+    height: 13vw;
+}
+
 .post:hover .post_thembnail img{
     filter: saturate(0);
     transition: filter 500ms ease;
@@ -718,6 +723,9 @@ input, textarea, select {
         grid-template-columns: 1fr 1fr;
         gap: 3rem; 
     }
+    .post_thumbnail img{
+        height: 25vw;
+    }
     .footer_container {
         grid-template-columns: 1fr 1fr;
     }
@@ -820,6 +828,9 @@ input, textarea, select {
     .posts_container {
         grid-template-columns: 1fr;
        
+    }
+    .post_thumbnail img{
+        height: 45vw;
     }
     .category_buttons-container {
         grid-template-columns: 1fr 1fr;
