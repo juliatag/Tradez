@@ -15,16 +15,13 @@
 
 		</div>
 		<div class="post_info">
-			<a th:href="@{'/listingPage/' + ${listing.createdBy}+'/' + ${listing.id}}">
 			<h3 class="post_title">
-				<a th:text="${listing.title}">Listing Title</a>
+				<a th:href="@{'/listingPage/' + ${listing.createdBy}+'/' + ${listing.id}}" th:text="${listing.title}">Listing Title</a>
 			</h3>
-			</a>
 
-			<small th:text="${listing.category}">Category</small> | <small>Sep.
-				20, 2022</small> | <small><span th:text="${listing.estValue}">Estimated
-					value</span>$</small>
-
+			<small th:text="${listing.category}">Category</small> |
+			<small th:text="${listing.createDate}">create date</small> |
+			<small><span th:text="${listing.estValue}">Estimated value</span>$</small>
 
 		</div>
 	</article>
@@ -32,17 +29,3 @@
 </body>
 
 </html>
-
-
-<!-- <tbody>
-	<tr th:each="listing : ${listings}">
-		<td><img th:src="@{${'/loadListingImage/' + listing.id }}" width="80px" height="80px" /></td>
-		<td th:text="${listing.title}">Title</td>
-		<td th:text="${listing.state}">Condition</td>
-		<td th:text="${listing.estValue}">Price</td>
-		<td th:text="${listing.delivery}">delivery</td>
-		<td th:text="${listing.category}">delivery</td>
-		<td><a th:href="@{'/updateListing/' + ${listing.id}}" class="btn sm">Edit</a></td>
-		<td><a th:href="@{'/deleteListing/' + ${listing.id}}" class="btn sm danger">Delete</a></td>
-	</tr>
-</tbody> -->

@@ -10,27 +10,28 @@
 	<table border="1" cellpadding="10">
 		<thead>
 			<tr>
-				<th>image</th>
-				<th>title</th>
-				<th>status</th>
-				<th>condition</th>
-				<th>value</th>
-				<th>delivery</th>
-				<th>category</th>
-				<th colspan="2"></th>
+				<th class="th-image">image</th>
+				<th class="th-title">title</th>
+				<th class="th-status">status</th>
+				<th class="th-state">condition</th>
+				<th class="th-value">value</th>
+				<th class="th-delivery">delivery</th>
+				<th class="th-category">category</th>
+				<th class="th-actions" colspan="2"></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="listing : ${listings}">
-				<td><img th:src="@{${'/loadListingImage/' + listing.id }}" width="40px" height="40px" /></td>
-				<td th:text="${listing.title}">Title</td>
-				<td th:text="${listing.status}">status</td>
-				<td th:text="${listing.state}">Condition</td>
-				<td><span th:text="${listing.estValue}">Value</span>$</td>
-				<td th:text="${listing.delivery}">delivery</td>
-				<td th:text="${listing.category}">category</td>
-				<td class="text-right"><a th:href="@{'/updateListing/' + ${listing.id}}" class="btn sm">Edit</a></td>
-				<td class="text-right"><a th:href="@{'/confirmDelete/' + ${listing.id}}" class="btn sm danger">Delete</a></td>
+				<td class="td-image"><img th:src="@{${'/loadListingImage/' + listing.id }}" width="40px" height="40px" /></td>
+				<td class="td-title" th:text="${listing.title}">Title</td>
+				<td class="td-status" th:text="${listing.status}">status</td>
+				<td class="td-state" th:text="${listing.state}">Condition</td>
+				<td class="td-value" ><span th:text="${listing.estValue}">Value</span>$</td>
+				<td class="td-delivery" th:text="${listing.delivery}">delivery</td>
+				<td class="td-category" th:text="${listing.category}">category</td>
+
+				<td class="text-right td-actions"><a th:href="@{'/updateListing/' + ${listing.id}}" class="btn sm">Edit</a></td>
+				<td class="text-right td-actions"><a th:href="@{'/confirmDelete/' + ${listing.id}}" class="btn sm danger">Delete</a></td>
 			</tr>
 		</tbody>
 	</table>
