@@ -91,11 +91,17 @@ public class ListingService {
 		// how to limit this?
 		return this.listingRepo.findAll();
 	}
-	
+
+	public List<Listing> getMostRecent(int resultsLimit){
+		List<Listing> resultList = null;
+		Pageable page = PageRequest.of(0, resultsLimit, Sort.by("createDate"));
+		return this.listingRepo.findAll(page).getContent();
+	}
+
 	public List<Listing> search(String search){
 		List<Listing> resultList = null;
 		
-		Pageable page = PageRequest.of(0, 10, Sort.by("title"));
+		Pageable page = PageRequest.of(0, 12, Sort.by("createDate"));
 		
 		if(search == null || search.isEmpty()) {
 			resultList = this.listingRepo.findAll(page).getContent();
@@ -105,7 +111,4 @@ public class ListingService {
 		
 		return resultList;
 	}
-
-	
-
 }

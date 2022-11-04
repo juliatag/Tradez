@@ -20,7 +20,7 @@ public class PagesController {
 	
 	@RequestMapping("/")
 	public String homePage(Model model) {
-		model.addAttribute("listings", this.listingService.findAll());
+		model.addAttribute("listings", this.listingService.getMostRecent(6));
 		return "index";	
 	}
 	

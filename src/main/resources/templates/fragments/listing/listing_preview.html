@@ -9,13 +9,17 @@
 
 	<article th:fragment="listing_preview" class="post">
 		<div class="post_thumbnail">
-			<img th:src="@{${'/loadListingImage/' + listing.id }}" alt="">
+			<a th:href="@{'/listingPage/' + ${listing.createdBy}+'/' + ${listing.id}}">
+				<img th:src="@{${'/loadListingImage/' + listing.id }}" alt="">
+			</a>
+
 		</div>
 		<div class="post_info">
-
+			<a th:href="@{'/listingPage/' + ${listing.createdBy}+'/' + ${listing.id}}">
 			<h3 class="post_title">
 				<a th:text="${listing.title}">Listing Title</a>
 			</h3>
+			</a>
 
 			<small th:text="${listing.category}">Category</small> | <small>Sep.
 				20, 2022</small> | <small><span th:text="${listing.estValue}">Estimated
