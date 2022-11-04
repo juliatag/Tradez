@@ -9,12 +9,13 @@
 <body>
 	<header th:replace="~{fragments/global/header :: header}">Global
 		Header</header>
+	<div class="my-3"> <!-- DO NOT REMOVE, FOR PADDING -->
+		<p>&;nbsp</p>
+	</div>
 
-	<div class="container my-5 text-center">
+	<div class="container my-5 mb-4 text-center">
 		<h1 class="" th:text="${listing.title}">title</h1>
-		<a
-			th:href="${'http://maps.google.com/maps?q=Postal+Code+' + user.postalCode.substring(0,3)}"
-			target="_blank"><i class="uil uil-map"></i> Location </a>
+		
 	</div>
 
 	<div class="container my-3">
@@ -23,31 +24,30 @@
 				<img class="listing_preview"
 					th:src="@{${'/loadListingImage/' + listing.id }}" alt="">
 			</div>
-<!-- 			<div class="mb-3">
-					<h3 th:text="*{username}">Username</h3>
-					<p><b>email : </b><span th:text="*{email}"></span></p>
-					<p><b>postal code : </b><span th:text="*{postalCode}"></span></p>
-				</div> -->
+
 
 			<div>
-				<ul>
-					<li th:text="'Description: ' + ${listing.description}"></li>
-					<li th:text="'Category: ' + ${listing.category}"></li>
-					<li th:text="'Condition: ' + ${listing.state}"></li>
-					<li th:text="'Status: ' + ${listing.status}"></li>
-					<li th:text="'Delivery: ' + ${listing.delivery}"></li>
+				<ul class="contrast">
+
+					<li><h3>Description:</h3> <span
+						th:text="${listing.description}"></span></li>
+
+					<li><b> Category: </b> <span th:text="${listing.category}"></span></li>
+					<li><b> Condition: </b> <span th:text="${listing.state}"></span></li>
+					<li><b> Status: </b> <span th:text="${listing.status}"></span></li>
+					<li><b> Delivery: </b> <span th:text="${listing.delivery}"></span></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<div class="container my-5">
 		<div class="listing-profile-section">
-			<div>
+			<div class="contrast">
 				<h1 th:text="${user.username}">title</h1>
 				<p th:text="${user.description}"></p>
 			</div>
 
-			<div class="text-center contrast">
+			<div class="text-center ">
 				<h1>Interested?</h1>
 				<h3>If you have something to trade contact the user!</h3>
 				<a target="_blank" th:href="@{mailto:{to}(to=${user.email})}"><button
@@ -55,7 +55,10 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="my-5">
+	<article th:replace="~{fragments/user/map :: map}">Map</article>
+	<article></article>
+	</div>
 
 	<footer th:replace="~{fragments/global/footer :: footer}">Global
 		Header</footer>

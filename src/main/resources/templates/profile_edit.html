@@ -8,7 +8,8 @@
 </head>
 
 <body th:object="${user}">
-	<header th:replace="~{fragments/global/header :: header}">Global Header</header>
+	<!-- PUSH FOOTER when there little page content -->
+	<div style="min-height: 68vh">
 
 	<section class="form_section">
 		<div class="container form_section-container">

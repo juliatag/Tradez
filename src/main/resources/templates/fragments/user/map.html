@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div align="center" th:fragment="map">
+
+<iframe
+  width="600"
+  height="450"
+  style="border:0"
+  loading="lazy"
+  allowfullscreen
+  referrerpolicy="no-referrer-when-downgrade"
+  th:src="@{${'https://www.google.com/maps/embed/v1/place?key=AIzaSyB-hhpZwpAACL57knMHdo-o-52kWrq672s
+    &q=Postal+Code+' + user.postalCode.substring(0,3)}}">
+</iframe>
+<!-- "${user.postalCode.substring(0,3)}" -->
+
+</div>
+
+</html>
+
+<!-- AIzaSyB-hhpZwpAACL57knMHdo-o-52kWrq672s -->
+
+<!-- <a
+	th:href="${'http://maps.google.com/maps?q=Postal+Code+' + user.postalCode.substring(0,3)}"
+	target="_blank"><i class="uil uil-map"></i> Location</a> -->

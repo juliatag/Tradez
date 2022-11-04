@@ -160,6 +160,7 @@ img {
 /* ******** listing preview page ***********/
 .listing-details-section img{
 	width:100%;
+
 	
 }
 /*  single listing page */
@@ -167,6 +168,13 @@ img {
 	display:grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
+}
+.listing-details-section .contrast{
+	background: var(--color-gray-900);
+	padding:3rem;
+	display:flex;
+	flex-direction:column;
+	gap:1.5rem;
 }
 
 .listing-profile-section {
@@ -182,6 +190,7 @@ img {
 	flex-direction:column;
 	gap:1.5rem;
 }
+
 /* ******** listing preview page ***********/
 
 /* show nav ul when nav profile is hovered  */
@@ -224,9 +233,13 @@ img {
     border-radius: var(--card-border-radius-5) 0;
     border: 1rem solid var(--color-gray-900); 
     overflow: hidden; 
-    margin-bottom: 1.6rem; 
-
+    margin-bottom: 1.6rem;
 }
+
+.post_thumbnail img{
+    height: 13vw;
+}
+
 .post:hover .post_thembnail img{
     filter: saturate(0);
     transition: filter 500ms ease;
@@ -575,6 +588,21 @@ input, textarea, select {
     transition: var(--transition);
 }
 
+.dashboard_container table .td-image img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin: 0;
+}
+.dashboard_container table .td-title {
+    font-size: 13px;
+    font-weight: 500;
+}
+.dashboard_container table .td-actions {
+    width: 45px;
+    text-align: right;
+}
+
 
 
 
@@ -695,6 +723,9 @@ input, textarea, select {
         grid-template-columns: 1fr 1fr;
         gap: 3rem; 
     }
+    .post_thumbnail img{
+        height: 25vw;
+    }
     .footer_container {
         grid-template-columns: 1fr 1fr;
     }
@@ -798,6 +829,9 @@ input, textarea, select {
         grid-template-columns: 1fr;
        
     }
+    .post_thumbnail img{
+        height: 45vw;
+    }
     .category_buttons-container {
         grid-template-columns: 1fr 1fr;
     }
@@ -871,54 +905,67 @@ input, textarea, select {
     display: none;
 }
 
-/*Responsive table fix*/
-.dashboard_container {
-background-color: transparent;
-}
-.dashboard_container table tr {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    margin: 10px 0;
-    padding: 5px;
-}
+    /* Responsive table layout fixes */
+    .dashboard_container {
+    background-color: transparent;
+    }
+    .dashboard_container table tr {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        margin: 10px 0;
+        padding: 5px;
+    }
 
+    .dashboard_container table th {
+        min-width:50px;
+        flex-grow: 1;
+    }
+    .dashboard_container table td {
+       width:20%;
+       flex-grow: 2;
+       border: 5px solid transparent;
+    }
+    .dashboard_container table .td-title,
+    .dashboard_container table .td-image {
+        width: 100%;
+        text-align: center;
+    }
+    .dashboard_container table .td-actions {
+        width: 50%;
+    }
+    .dashboard_container table .td-actions .btn{
+       margin: 3px;
+    }
+    .dashboard_container table .td-actions:last-child {
+        text-align: left;
+    }
+    .dashboard_container table .th-image,
+    .dashboard_container table .th-title,
+    .dashboard_container table .th-actions{
+        display: none;
+    }
+    /* Responsive table style fixes */
     .dashboard_container table tbody tr {
         border-radius: 10px;
         background-color: var(--color-gray-700);
     }
-.dashboard_container table th {
-    min-width:50px;
-    flex-grow: 1;
-}
-.dashboard_container table td {
-   width:20%;
-   flex-grow: 2;
-   border: 5px solid transparent;
-}
-.dashboard_container table td:nth-child(1) {
-width: 20%;
+    dashboard_container table .td-image {
+        width: 70px;
+    }
+    .dashboard_container table .td-image img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+    .dashboard_container table .td-title {
+        font-size: 16px;
+        font-weight: 700;
+    }
 
-}
-.dashboard_container table td:nth-child(2) {
-width: 80%;
 
-}
-.dashboard_container table td:nth-last-child(-n+2) {
-    width: 50%;
-}
-
-.dashboard_container table td:nth-last-child(-n+2) .btn{
-   margin: 3px;
-}
-.dashboard_container table td:last-child {
-    text-align: left;
-}
-.dashboard_container table th:nth-last-child(-n+1),
-.dashboard_container table th:nth-child(-n+2){
-  display: none;
-}
 
     /*  single listing page */
     .listing-details-section {

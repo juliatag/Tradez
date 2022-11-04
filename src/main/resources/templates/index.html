@@ -8,57 +8,62 @@
 </head>
 
 <body>
-	<!-- SITE HEADER -->
-	<header th:replace="~{fragments/global/header :: header}">Global Header</header>
+	<!-- PUSH FOOTER when there little page content -->
+	<div style="min-height: 68vh">
 
-	<!-- WELCOME SECTIOON -->
-	<section class="featured text-center">
-		<div class="container featured_container mb-5">
-			
-			<div th:if="${#authorization.expression('!isAuthenticated()')}" class="container my-5">
-				<!-- for NON logged in users -->
-				<h1 class="">Trade your stuff</h1>
-				<p class="post_body my-3">Lorem ipsum dolor, sit amet consectetur
-					adipisicing elit. Dolores facere, similique laborum voluptates
-					numquam qui odio voluptatum nulla officia illo facilis ratione
-					soluta non dolorum velit tenetur, iure magnam a.</p>
-				<a href="/signup" class=" btn md">Sign Up</a>
+		<!-- SITE HEADER -->
+		<header th:replace="~{fragments/global/header :: header}">Global Header</header>
+
+		<!-- WELCOME SECTIOON -->
+		<section class="featured text-center">
+			<div class="container featured_container mb-5">
+
+				<div th:if="${#authorization.expression('!isAuthenticated()')}" class="container my-5">
+					<!-- for NON logged in users -->
+					<h1 class="">Trade your stuff</h1>
+					<p class="post_body my-3">Lorem ipsum dolor, sit amet consectetur
+						adipisicing elit. Dolores facere, similique laborum voluptates
+						numquam qui odio voluptatum nulla officia illo facilis ratione
+						soluta non dolorum velit tenetur, iure magnam a.</p>
+					<a href="/signup" class=" btn md">Sign Up</a>
+				</div>
+
+				<div th:if="${#authorization.expression('isAuthenticated()')}" class="container my-5">
+					<!-- for LOGGED IN users -->
+					<h1>
+						Hi <span sec:authentication="name"></span>
+					</h1>
+					<p class="post_body my-3">Here to manage your listings? Go to your
+						dashboard.</p>
+					<a href="/dashboard" class="btn md">Dashboard</a>
+				</div>
+
 			</div>
-			
-			<div th:if="${#authorization.expression('isAuthenticated()')}" class="container my-5">
-				<!-- for LOGGED IN users -->
-				<h1>
-					Hi <span sec:authentication="name"></span>
-				</h1>
-				<p class="post_body my-3">Here to manage your listings? Go to your
-					dashboard.</p>
-				<a href="/dashboard" class="btn md">Dashboard</a>
+		</section>
+
+
+
+		<!-- LISTINGS SECTION -->
+		<section class="my-5">
+			<!-- Title and subtitle -->
+			<div class="container text-center">
+				<h3>Looking for something?</h3>
+				<p class="post_body ">take a look at the new listings or search.</p>
 			</div>
 
-		</div>
-	</section>
+			<!-- SEARCH BAR -->
+			<section class="post" th:replace="~{fragments/listing/search_bar :: search_bar}">Search Bar</section>
 
-
-
-	<!-- LISTINGS SECTION -->
-	<section class="my-5">
-		<!-- Title and subtitle -->
-		<div class="container text-center">
-			<h3>Looking for something?</h3>
-			<p class="post_body ">take a look at the new listings or search.</p>
-		</div>
-
-		<!-- SEARCH BAR -->
-		<section class="post" th:replace="~{fragments/listing/search_bar :: search_bar}">Search Bar</section>
-
-		<!-- Featured Listings -->
-		<div class="container posts_container">
-			<div th:each="listing : ${listings}">
-				<article class="post" th:replace="~{fragments/listing/listing_preview :: listing_preview}">List of
-					Listings</article>
+			<!-- Featured Listings -->
+			<div class="container posts_container">
+				<div th:each="listing : ${listings}">
+					<article class="post" th:replace="~{fragments/listing/listing_preview :: listing_preview}">List of
+						Listings</article>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+
+	</div>
 
 	<!-- SITE FOOTER -->
 	<footer th:replace="~{fragments/global/footer :: footer}">Global Footer</footer>
