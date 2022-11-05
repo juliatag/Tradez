@@ -21,7 +21,10 @@
 
 			<small th:text="${listing.category}">Category</small> |
 			<small th:text="${listing.createDate}">create date</small> |
-			<small><span th:text="${listing.estValue}">Estimated value</span>$</small>
+			<small><span th:text="${listing.estValue}">Estimated value</span>$</small>|
+			<a th:href="@{'/profile/'+ ${listing.createdBy}}">
+			<small th:text="${listing.createdBy}">create date</small>
+			</a>
 
 		</div>
 	</article>
