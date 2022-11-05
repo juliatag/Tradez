@@ -43,7 +43,10 @@
 	<div class="container my-5">
 		<div class="listing-profile-section">
 			<div class="contrast">
+			
+				<a th:href="@{'/profile/'+ ${user.username}}">
 				<h1 th:text="${user.username}">title</h1>
+				</a>
 				<p th:text="${user.description}"></p>
 			</div>
 
