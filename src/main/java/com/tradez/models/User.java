@@ -1,35 +1,39 @@
 package com.tradez.models;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Entity
-public class User extends Auditable<String>{
-	
+public class User extends Auditable<String> {
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(length=30,unique=true,nullable=false)
+
+	@Column(length = 30, unique = true, nullable = false)
+	@NotBlank(message = "Username must not be blank")
 	private String username;
-	
-	@Column(length=50,unique=true,nullable=false)
+
+	@Column(length = 50, unique = true, nullable = false)
+	@Email(message = "Please provide a valid email")
+	@NotBlank(message = "Email must not be blank")
 	private String email;
-	
-	@Column(length=64)
+
+	@Column(length = 64)
 	private String password;
-	
+
 	@Transient
 	private String confirmPassword;
-	
+//	@Pattern(regexp = "^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$", message = "Postal code must only include capital letter, numbers with or without space")
 	private String postalCode;
-	
-	@Column(length=512)//default is too short
+
+	@Column(length = 512) // default is too short
 	private String description;
 
 	public Long getId() {
@@ -87,5 +91,5 @@ public class User extends Auditable<String>{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 }

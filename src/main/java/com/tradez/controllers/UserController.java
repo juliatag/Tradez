@@ -65,15 +65,18 @@ public class UserController {
 
 	@GetMapping("/dashboard/profile/edit")
 	public String editProfilePage(Model model) {
-		model.addAttribute("authUser", this.service.getAuthUser());
+		model.addAttribute("user", this.service.getAuthUser());
 		return "profile_edit";
 	}
 
 	@PostMapping("/dashboard/profile/edit")
-	public String update(User authUser, Model model) {
-		authUser.setId(this.service.getAuthUser().getId());
-		model.addAttribute("authUser", authUser);
-		service.save(authUser);
+	public String update(@Valid User user, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "profile_edit";
+		}
+		user.setId(this.service.getAuthUser().getId());
+//		model.addAttribute("authUser", authUser);
+		service.save(user);
 		return "redirect:/dashboard";
 	}
 
