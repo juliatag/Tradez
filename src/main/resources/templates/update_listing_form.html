@@ -37,6 +37,9 @@
 							type="radio" th:field="*{delivery}" th:value="${deli}"
 							th:text="${deli}"></li>
 					</ul>
+					<span class="alert_message error"
+					th:if="${#fields.hasErrors('delivery')}" th:errors="*{delivery}">delivery
+					error</span> 
 				</div>
 
 				<div class="form_control">
@@ -48,6 +51,9 @@
 							type="radio" th:field="*{state}" th:value="${condition}"
 							th:text="${condition}"></li>
 					</ul>
+					<span class="alert_message error"
+					th:if="${#fields.hasErrors('state')}" th:errors="*{state}">state
+					error</span> 
 				</div>
 
 				<div class="form_control">
@@ -58,14 +64,24 @@
 							type="radio" th:field="*{status}" th:value="${status}"
 							th:text="${status}"></li>
 					</ul>
+					<span class="alert_message error"
+					th:if="${#fields.hasErrors('state')}" th:errors="*{state}">state
+					error</span> 
 				</div>
 				<label>Description</label>
 				<textarea rows="10" th:field="*{description}"
 					placeholder="Describe the object here"></textarea>
+					<span class="alert_message error"
+					th:if="${#fields.hasErrors('description')}" th:errors="*{description}">description
+					error</span> 
+					
 
 				<div class="form_control">
 					<label for="thumbnail">Change thumbnail</label> <input type="file"
 						id="thumbnail" name="imgFile" />
+						<span class="alert_message error"
+					th:if="${#fields.hasErrors('img')}" th:errors="*{img}">img
+					error</span>
 				</div>
 
 				<button type="submit" class="btn">Submit</button>

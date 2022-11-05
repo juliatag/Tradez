@@ -3,14 +3,18 @@ package com.tradez.controllers;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,14 +38,20 @@ public class ListingController {
 		return "listing_form";
 	}
 	
-	@GetMapping("/updateListing/{id}")
-	public String updateListingPage(@PathVariable("id") Long id,Model model) {
-		setupModel(model,"Edit Listing",this.listingService.findById(id));
-		return "update_listing_form";
-	}
+	
+	  @RequestMapping("/updateListing")
+	  public String updateListingPage(@RequestParam(name="id")  Long id,Model model) {
+	  setupModel(model,"Edit Listing",this.listingService.findById(id)); 
+	  return "update_listing_form"; 
+	  }
+	 
 	
 	@PostMapping("/saveListing")
-	public String saveListing(Listing listing, @RequestPart MultipartFile imgFile) throws IOException {
+	public String saveListing(@Valid Listing listing, BindingResult bindingResult, @RequestPart MultipartFile imgFile, Model model) throws IOException {
+		if (bindingResult.hasErrors()) {
+			setupModel(model,"Add Listing", listing);
+			return "listing_form";
+		}
 		if(listing.getId() == null)
 		  this.listingService.save(listing, imgFile);
 		else
@@ -51,15 +61,15 @@ public class ListingController {
 	
 //	*******ZACS DELETE CONFIRM*****
 	
-	@GetMapping("/confirmDelete/{id}")
-	public String confirmDelete(@PathVariable Long id, Model model) throws IOException {
+	@RequestMapping("/confirmDelete")
+	public String confirmDelete(@RequestParam(name="id") Long id, Model model) throws IOException {
 		model.addAttribute("listing", this.listingService.findById(id));
-		System.out.print("confirm delete"+ id);
+		
 		return "confirm_delete";
 	}
-	@GetMapping("/deleteListing/{id}")
-	public String deleteListing(@PathVariable Long id) throws IOException {
-		System.out.print("deleting..."+ id);
+	@RequestMapping("/deleteListing")
+	public String deleteListing(@RequestParam(name="id") Long id) throws IOException {
+		
 		this.listingService.deleteById(id);
 		return "redirect:/dashboard";
 	}

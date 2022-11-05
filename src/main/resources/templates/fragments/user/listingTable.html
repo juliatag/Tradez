@@ -37,9 +37,27 @@
 				<td class="td-value" ><span th:text="${listing.estValue}">Value</span>$</td>
 				<td class="td-delivery" th:text="${listing.delivery}">delivery</td>
 				<td class="td-category" th:text="${listing.category}">category</td>
+				
+<!-- 				<form th:action="@{/explore}" method="post"
+			class="container search_bar-container">
+			<div>
+				<i class="uil uil-search"></i> <input type="search" name="search"
+					placeholder="Search"  th:value="${search}"/>
+			</div>
+			<button type="submit" class="btn">Go</button>
+		</form> -->
 
-				<td class="text-right td-actions"><a th:href="@{'/updateListing/' + ${listing.id}}" class="btn sm">Edit</a></td>
-				<td class="text-right td-actions"><a th:href="@{'/confirmDelete/' + ${listing.id}}" class="btn sm danger">Delete</a></td>
+				<td class="text-right td-actions">
+				<form th:action="@{/updateListing}" method="post">
+				<input type="hidden" name="id" th:value="${listing.id}"/>
+				<button type="submit" class="btn sm">edit</button>
+				</form>
+				</td>
+				<td class="text-right td-actions">
+				<form th:action="@{/confirmDelete}" method="post">
+				<input type="hidden" name="id" th:value="${listing.id}"/>
+				<button type="submit" class="btn sm danger">delete</button>
+				</form>
 			</tr>
 		</tbody>
 	</table>
