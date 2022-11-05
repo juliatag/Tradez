@@ -25,7 +25,7 @@ public class Listing extends Auditable<String> {
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] img;
 
-	@Column(length = 512)
+	@Column(length = 2000)
 	private String description;
 
 	private Integer estValue;
