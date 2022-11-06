@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -28,6 +29,7 @@ public class Listing extends Auditable<String> {
 	private String state;
 	
 	/* @Size(min = 1) */ /* ,(message="Noone will want your item if they can't see it! add a photo") */
+	@NotEmpty(message="Noone will want your item if they can't see it! add a photo")
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] img;
