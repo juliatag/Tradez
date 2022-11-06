@@ -9,13 +9,14 @@
 <body>
 	<header th:replace="~{fragments/global/header :: header}">Global
 		Header</header>
-	<div class="my-3"> <!-- DO NOT REMOVE, FOR PADDING -->
+	<div class="my-3">
+		<!-- DO NOT REMOVE, FOR PADDING -->
 		<p>&;nbsp</p>
 	</div>
 
 	<div class="container my-5 mb-4 text-center">
 		<h1 class="" th:text="${listing.title}">title</h1>
-		
+
 	</div>
 
 	<div class="container my-3">
@@ -44,10 +45,18 @@
 		<div class="listing-profile-section">
 			<div class="contrast">
 			
+				<div class="text-center">
 				<a th:href="@{'/profile/'+ ${user.username}}">
-				<h1 th:text="${user.username}">title</h1>
+					<h1 th:text="${user.username}">title</h1>
 				</a>
+				
 				<p th:text="${user.description}"></p>
+				</div>
+				<div class="text-center">
+					<h3>Want to see what else they have? visit their profile!</h3>
+					<a target="_blank" th:href="@{'/profile/'+ ${user.username}}"><button
+							class="btn">View Profile</button></a>
+				</div>
 			</div>
 
 			<div class="text-center ">
@@ -55,12 +64,13 @@
 				<h3>If you have something to trade contact the user!</h3>
 				<a target="_blank" th:href="@{mailto:{to}(to=${user.email})}"><button
 						class="btn">Contact</button></a>
+
 			</div>
 		</div>
 	</div>
 	<div class="my-5">
-	<article th:replace="~{fragments/user/map :: map}">Map</article>
-	<article></article>
+		<article th:replace="~{fragments/user/map :: map}">Map</article>
+		<article></article>
 	</div>
 
 	<footer th:replace="~{fragments/global/footer :: footer}">Global
