@@ -9,12 +9,12 @@
 <body>
 	<header th:replace="~{fragments/global/header :: header}">Global
 		Header</header>
-	<section class="search_bar text-center">
+		
+	<section style="display:grid;place-items: center;margin-top:6em">
 
 		<h1>ARE YOU SURE YOU WANT TO DELETE?</h1>
 		
-		
-		<div class="container">
+		<div>
 			<form th:action="@{/deleteListing}" method="post">
 				<input type="hidden" name="id" th:value="${listing.id}" />
 				<button type="submit" class="btn danger my-5 text-center">delete</button>
@@ -23,9 +23,6 @@
 		
 
 		<!-- <a th:href="@{'/deleteListing/' + ${listing.id}}" class="btn sm danger my-5 ">Delete</a> -->
-	</section>
-
-	<section>
 		<div
 			class="container posts_container text-center justify-content-center">
 			<article></article>
