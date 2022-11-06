@@ -29,22 +29,22 @@ public class UserValidator implements Validator {
 
 		PasswordValidator validator = new PasswordValidator(Arrays.asList(
 				// at least 8 characters
-				new LengthRule(2, 20)
+				new LengthRule(5, 20),
 
 				// at least one upper-case character
-				//new CharacterRule(EnglishCharacterData.UpperCase, 1),
+				new CharacterRule(EnglishCharacterData.UpperCase, 1),
 
 				// at least one lower-case character
-				//new CharacterRule(EnglishCharacterData.LowerCase, 1),
+				new CharacterRule(EnglishCharacterData.LowerCase, 1),
 
 				// at least one digit character
-				//new CharacterRule(EnglishCharacterData.Digit, 1),
+				new CharacterRule(EnglishCharacterData.Digit, 1),
 
 				// at least one symbol (special character)
-				//new CharacterRule(EnglishCharacterData.Special, 1),
+				new CharacterRule(EnglishCharacterData.Special, 1),
 
 				// no whitespace
-				//new WhitespaceRule()
+				new WhitespaceRule()
 
 		));
 		RuleResult result = validator.validate(new PasswordData(user.getPassword()));

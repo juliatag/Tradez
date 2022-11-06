@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class User extends Auditable<String> {
@@ -30,7 +31,7 @@ public class User extends Auditable<String> {
 
 	@Transient
 	private String confirmPassword;
-//	@Pattern(regexp = "^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$", message = "Postal code must only include capital letter, numbers with or without space")
+	@Pattern(regexp = "^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$", message = "Postal code must only include capital letter, numbers with or without space")
 	private String postalCode;
 
 	@Column(length = 512) // default is too short
