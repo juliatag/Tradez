@@ -29,7 +29,6 @@ public class Listing extends Auditable<String> {
 	private String state;
 	
 	/* @Size(min = 1) */ /* ,(message="Noone will want your item if they can't see it! add a photo") */
-	@NotEmpty(message="Noone will want your item if they can't see it! add a photo")
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] img;

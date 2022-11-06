@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -48,6 +49,11 @@ public class ListingController {
 	
 	@PostMapping("/saveListing")
 	public String saveListing(@Valid Listing listing, BindingResult bindingResult, @RequestPart MultipartFile imgFile, Model model) throws IOException {
+		
+		if(listing.getId() == null && imgFile.isEmpty()) {
+			bindingResult.rejectValue("img", null,"Noone will want your item if they can't see it! add a photo");
+		}
+	
 		if (bindingResult.hasErrors()) {
 			setupModel(model,"Add Listing", listing);
 			return "listing_form";
