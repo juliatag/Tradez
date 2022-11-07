@@ -28,7 +28,7 @@ public class UserValidator implements Validator {
 		User user = (User) target;
 
 		PasswordValidator validator = new PasswordValidator(Arrays.asList(
-				// at least 8 characters
+				// at least 5 characters
 				new LengthRule(5, 20),
 
 				// at least one upper-case character
