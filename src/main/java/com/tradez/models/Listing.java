@@ -11,39 +11,37 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Listing extends Auditable<String> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotBlank(message="Give the item a name!")
+
+	@NotBlank(message = "Give the item a name!")
 	private String title;
-	
-	@NotBlank(message="Choose an option")
+
+	@NotBlank(message = "Choose an option")
 	@Column(length = 20)
 	private String state;
-	
-	/* @Size(min = 1) */ /* ,(message="Noone will want your item if they can't see it! add a photo") */
+
+	/* @Size(min = 1) */ /* ,(message="None will want your item if they can't see it! add a photo") */
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] img;
-	
-	@NotBlank(message="Please describe the item")
+
+	@NotBlank(message = "Please describe the item")
 	@Column(length = 2000)
 	private String description;
-	
-	@NotNull(message="We'll take your best guess...")
+
+	@NotNull(message = "We will take your best guess...")
 	private Integer estValue;
-	
-	@NotBlank(message="Are you willing to deliver?")
+
+	@NotBlank(message = "Are you willing to deliver?")
 	@Column(length = 4)
 	private String delivery;
-	
+
 	@NotBlank
 	@Column(length = 20)
 	private String status;
