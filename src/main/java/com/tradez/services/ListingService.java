@@ -96,23 +96,33 @@ public class ListingService {
 		return this.listingRepo.findAll();
 	}
 
+	//for index page
 	public List<Listing> getMostRecent(int resultsLimit){
-		List<Listing> resultList = null;
-		Pageable page = PageRequest.of(0, resultsLimit, Sort.by("createDate"));
-		return this.listingRepo.findAll(page).getContent();
+		Pageable page = PageRequest.of(0, resultsLimit, Sort.by("createDate").descending());
+//		return this.listingRepo.findAll(page).getContent();
+		return this.listingRepo.findAllByStatus("available", page);
 	}
 
+	//for explore page
 	public List<Listing> search(String search){
 		List<Listing> resultList = null;
 		
 		Pageable page = PageRequest.of(0, 12, Sort.by("createDate").descending());
 		
 		if(search == null || search.isEmpty()) {
-			resultList = this.listingRepo.findAll(page).getContent();
+//			resultList = this.listingRepo.findAll(page).getContent();
+			return this.listingRepo.findAllByStatus("available", page);
 		}else {
-			resultList = this.listingRepo.findFirst10ByTitleLike("%" + search + "%");
+			resultList = this.listingRepo.findAllByTitleLikeAndStatus("%" + search + "%", "available", page);
 		}
 		
 		return resultList;
 	}
+	
+	//for public profile page
+	public List<Listing> findByCreatedByAndStatus(String username, String status, int resultsLimit){
+		Pageable page = PageRequest.of(0, resultsLimit , Sort.by("createDate").descending());
+		return this.listingRepo.findByCreatedByAndStatus(username, status, page);
+	}
+	
 }

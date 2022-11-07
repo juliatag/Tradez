@@ -63,23 +63,28 @@ public class UserController {
 	@GetMapping("/profile/{username}")
 	public String getUserProfile(@PathVariable String username, Model model) {
 		model.addAttribute("user", this.service.getByUsername(username));
-		model.addAttribute("listings", this.listingService.findByUsername(username));
+//		model.addAttribute("listings", this.listingService.findByUsername(username));
+		model.addAttribute("listings", this.listingService.findByCreatedByAndStatus(username, "available", 12));
 		model.addAttribute("authUser", this.service.getAuthUser());
 		return "profile";
 	}
 
 	@GetMapping("/dashboard/profile/edit")
-	public String editProfilePage(Model model) {
-		model.addAttribute("user", this.service.getAuthUser());
+	public String editProfile(Model model) {
+		model.addAttribute("authUser", this.service.getAuthUser());
+		model.addAttribute("readonly", true);
 		return "profile_edit";
 	}
 
 	@PostMapping("/dashboard/profile/edit")
-	public String update(@Valid User user, BindingResult bindingResult, Model model) {
+	public String updateProfile(@Valid User user, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
+//			model.addAttribute("authUser", this.service.getAuthUser());
+//			model.addAttribute("readonly", true);
 			return "profile_edit";
 		}
 		user.setId(this.service.getAuthUser().getId());
+//		model.addAttribute("readonly", "true");
 //		model.addAttribute("authUser", authUser);
 		service.save(user);
 		return "redirect:/dashboard";

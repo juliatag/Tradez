@@ -37,7 +37,7 @@
 				<!-- User Listings -->
 				<div th:each="listing : ${listings}">
 					<article class="post"
-						th:replace="~{fragments/listing/listing_preview :: listing_preview}">List
+						th:if="${listing.status == 'Available'}" th:replace="~{fragments/listing/listing_preview :: listing_preview}">List
 						of Listings</article>
 				</div>
 			</div>

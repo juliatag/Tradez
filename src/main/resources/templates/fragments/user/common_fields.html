@@ -9,16 +9,16 @@
 	<th:block th:fragment="common_fields">
 
 		<!-- EMAIL -->
-		<input type="email" th:field="*{email}" placeholder="Email" />
+		<input type="email" th:field="*{email}" placeholder="Email" th:readonly=${readonly}/>
 		<span class="alert_message error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</span>
 
 		<!-- USERNAME -->
-		<input type="text" th:field="*{username}" placeholder="Username" />
+		<input type="text" th:field="*{username}" placeholder="Username" th:readonly=${readonly}/>
 		<span class="alert_message error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username
 			error</span>
 
 		<!-- PASSWORD -->
-		<input type="password" th:field="*{password}" placeholder="Enter password" />
+		<input type="password" th:field="*{password}" placeholder="Enter password"/>
 		<ul class="alert_message error" th:each="error: ${#fields.errors('password')}">
 			<li th:each="message : ${error.split(',')}">
 				<p th:text="${message}">password error</p>

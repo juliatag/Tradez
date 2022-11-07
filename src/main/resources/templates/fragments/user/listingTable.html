@@ -32,7 +32,7 @@
 						<span th:text="${listing.title}">Title</span>
 					</a>
 				</td>
-				<td class="td-status" th:text="${listing.status}">status</td>
+				<td class="td-status" th:classappend="${listing.status == 'Traded'} ? traded : available" th:text="${listing.status}">status</td>
 				<td class="td-state" th:text="${listing.state}">Condition</td>
 				<td class="td-value" ><span th:text="${listing.estValue}">Value</span>$</td>
 				<td class="td-delivery" th:text="${listing.delivery}">delivery</td>
@@ -48,16 +48,17 @@
 		</form> -->
 
 				<td class="text-right td-actions">
-				<form th:action="@{/updateListing}" method="post">
-				<input type="hidden" name="id" th:value="${listing.id}"/>
-				<button type="submit" class="btn sm">edit</button>
-				</form>
+					<form th:action="@{/updateListing}" method="post">
+						<input type="hidden" name="id" th:value="${listing.id}"/>
+						<button type="submit" class="btn sm">edit</button>
+					</form>
 				</td>
 				<td class="text-right td-actions">
-				<form th:action="@{/confirmDelete}" method="post">
-				<input type="hidden" name="id" th:value="${listing.id}"/>
-				<button type="submit" class="btn sm danger">delete</button>
-				</form>
+					<form th:action="@{/confirmDelete}" method="post">
+						<input type="hidden" name="id" th:value="${listing.id}"/>
+						<button type="submit" class="btn sm danger">delete</button>
+					</form>
+				</td>
 			</tr>
 		</tbody>
 	</table>

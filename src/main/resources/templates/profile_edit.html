@@ -1,63 +1,42 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta th:replace="~{fragments/global/meta :: meta}" />
-	<title>Edit Profile</title>
+<!-- SITE META TAGS AND STILES -->
+<meta th:replace="~{fragments/global/meta :: meta}" />
+<title>Edit Profile</title>
 </head>
 
-<body th:object="${user}">
-<header th:replace="~{fragments/global/header :: header}">Global Header</header>
+<body>
 	<!-- PUSH FOOTER when there little page content -->
 	<div style="min-height: 68vh">
 
-	<section class="form_section featured">
-		<div class="container form_section-container">
-			<h2>Edit Profile</h2>
-			<form th:fragment="user_form" th:object="${user}" th:action="@{/dashboard/profile/edit}" method="post">
+		<!-- SITE HEADER -->
+		<header th:replace="~{fragments/global/header :: header}">Global
+			Header</header>
 
-				<!-- EMAIL -->
-		<input type="email" th:field="*{email}" placeholder="Email" readonly />
-		<span class="alert_message error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</span>
+		<!-- EDIT PROFILE SECTION -->
+		<section class="featured">
+			<div class="container form_section-container">
+				<h2>Edit Profile</h2>
+				
+				<!-- EDIT PROFILE form -->
+				<form th:object="${authUser}" th:action="@{/dashboard/profile/edit}" method="post">
+	
+					<!-- Form fields -->
+					<input th:replace="~{fragments/user/common_fields :: common_fields}" />
+			
+					<!-- Submit button -->
+					<button type="submit" class="btn">Update</button>
+				</form>
+			</div>
+		</section>
+	</div>
 
-		<!-- USERNAME -->
-		<input type="text" th:field="*{username}" placeholder="Username" readonly />
-		<span class="alert_message error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username
-			error</span>
-
-		<!-- PASSWORD -->
-		<input type="password" th:field="*{password}" placeholder="Enter password" />
-		<ul class="alert_message error" th:each="error: ${#fields.errors('password')}">
-			<li th:each="message : ${error.split(',')}">
-				<p th:text="${message}">password error</p>
-			</li>
-		</ul>
-
-		<!-- CONFIRM PASSWORD -->
-		<input type="password" th:field="*{confirmPassword}" placeholder="Confirm password" />
-		<ul class="alert_message error" th:each="error: ${#fields.errors('confirmPassword')}">
-			<li th:each="message : ${error.split(',')}">
-				<p th:text="${message}">confirmation error</p>
-			</li>
-		</ul>
-
-		<!-- POSTAL CODE -->
-		<input type="text" th:field="*{postalCode}" placeholder="Postal Code" />
-		<span class="alert_message error" th:if="${#fields.hasErrors('postalCode')}"
-			th:errors="*{postalCode}">postalCode error</span>
-
-		<!-- DESCRIPTION FIELD -->
-		<label>Tell other users what you would like to recieve in a trade!</label>
-		<textarea rows="10" th:field="*{description}" placeholder="What YOU want!"></textarea>
-		
-				<button type="submit" class="btn">Update</button>
-			</form>
-		</div>
-	</section>
-
-	<footer th:replace="~{fragments/global/footer :: footer}">Global Header</footer>
-	<script th:replace="~{fragments/global/scripts :: scripts}">//Global Scripts</script>
+	<!-- SITE FOOTER -->
+	<footer th:replace="~{fragments/global/footer :: footer}">Global Footer</footer>
+	<!-- GLOBAL SCRIPTS -->
+	<script th:replace="~{fragments/global/scripts :: scripts}"></script>
 </body>
 
 </html>
