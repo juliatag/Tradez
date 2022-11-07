@@ -105,7 +105,7 @@ public class ListingService {
 	public List<Listing> search(String search){
 		List<Listing> resultList = null;
 		
-		Pageable page = PageRequest.of(0, 12, Sort.by("createDate"));
+		Pageable page = PageRequest.of(0, 12, Sort.by("createDate").descending());
 		
 		if(search == null || search.isEmpty()) {
 			resultList = this.listingRepo.findAll(page).getContent();

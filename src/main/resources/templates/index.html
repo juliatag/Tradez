@@ -2,9 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org" th:object="${user}">
 
 <head>
-	<!-- SITE META TAGS AND STILES -->
-	<meta th:replace="~{fragments/global/meta :: meta}" />
-	<title>Home</title>
+<!-- SITE META TAGS AND STILES -->
+<meta th:replace="~{fragments/global/meta :: meta}" />
+<title>Home</title>
 </head>
 
 <body>
@@ -12,29 +12,33 @@
 	<div style="min-height: 68vh">
 
 		<!-- SITE HEADER -->
-		<header th:replace="~{fragments/global/header :: header}">Global Header</header>
+		<header th:replace="~{fragments/global/header :: header}">Global
+			Header</header>
 
 		<!-- WELCOME SECTIOON -->
 		<section class="featured text-center">
 			<div class="container featured_container mb-5">
 
-				<div th:if="${#authorization.expression('!isAuthenticated()')}" class="container my-5">
+				<div th:if="${#authorization.expression('!isAuthenticated()')}"
+					class="container my-5">
 					<!-- for NON logged in users -->
 					<h1 class="">Trade your stuff</h1>
-					<p class="post_body my-3">Lorem ipsum dolor, sit amet consectetur
-						adipisicing elit. Dolores facere, similique laborum voluptates
-						numquam qui odio voluptatum nulla officia illo facilis ratione
-						soluta non dolorum velit tenetur, iure magnam a.</p>
+					<p class="post_body my-3">Welcome to Tradez! here you can look
+						at items people are willing to trade and you can post items you
+						are willing to trade. members will put what they are looking to
+						recieve in a trade in their profile so you can try and find a good
+						match! Your trash is someone elses treasure, SIGN UP NOW and get started!</p>
 					<a href="/signup" class=" btn md">Sign Up</a>
 				</div>
 
-				<div th:if="${#authorization.expression('isAuthenticated()')}" class="container my-5">
+				<div th:if="${#authorization.expression('isAuthenticated()')}"
+					class="container my-5">
 					<!-- for LOGGED IN users -->
 					<h1>
 						Hi <span sec:authentication="name"></span>
 					</h1>
-					<p class="post_body my-3">Here to manage your listings? Go to your
-						dashboard.</p>
+					<p class="post_body my-3">Here to manage your listings? Go to
+						your dashboard.</p>
 					<a href="/dashboard" class="btn md">Dashboard</a>
 				</div>
 
@@ -52,13 +56,16 @@
 			</div>
 
 			<!-- SEARCH BAR -->
-			<section class="post" th:replace="~{fragments/listing/search_bar :: search_bar}">Search Bar</section>
+			<section class="post"
+				th:replace="~{fragments/listing/search_bar :: search_bar}">Search
+				Bar</section>
 
 			<!-- Featured Listings -->
 			<div class="container posts_container">
 				<div th:each="listing : ${listings}">
-					<article class="post" th:replace="~{fragments/listing/listing_preview :: listing_preview}">List of
-						Listings</article>
+					<article class="post"
+						th:replace="~{fragments/listing/listing_preview :: listing_preview}">List
+						of Listings</article>
 				</div>
 			</div>
 		</section>
@@ -66,7 +73,8 @@
 	</div>
 
 	<!-- SITE FOOTER -->
-	<footer th:replace="~{fragments/global/footer :: footer}">Global Footer</footer>
+	<footer th:replace="~{fragments/global/footer :: footer}">Global
+		Footer</footer>
 	<!-- GLOBAL SCRIPTS -->
 	<script th:replace="~{fragments/global/scripts :: scripts}"></script>
 </body>
