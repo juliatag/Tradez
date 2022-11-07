@@ -43,6 +43,11 @@ public class UserController {
 	@PostMapping("/signup")
 	public String signUp(@Valid User user, BindingResult bindingResult, Model model) {
 
+		String fieldName = service.validateUsernameAndEmail(user);
+		if(fieldName != null) {
+			bindingResult.rejectValue(fieldName, null, "The" + fieldName + " has been registered");
+		}
+		
 		if (bindingResult.hasErrors()) {
 			return "signup";
 		}

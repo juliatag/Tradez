@@ -45,5 +45,27 @@ public class UserService{
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		return this.repo.findByUsername(auth.getName());
 	}
+	
+	public String validateUsernameAndEmail(User user) {
+		
+		String email = user.getEmail();
+		String username = user.getUsername();
+		
+		if(email.isEmpty() || username.isEmpty()) {
+			System.out.println("email or username is empty");
+			return null;
+		}
+		
+		User dbUser = this.repo.findByEmail(email);
+		if(dbUser != null) {
+			return "email";
+		}
+		
+		dbUser = this.repo.findByUsername(username);
+		if(dbUser != null) {
+			return "username";
+		}
+		return null;
+	}
 
 }
