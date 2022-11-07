@@ -3,7 +3,7 @@
   <header th:fragment="header">
 	<nav>
 		<div class="container nav_container">
-		  <a href="/" class="nav_logo<">Trades</a>
+		  <a href="/" class="nav_logo<"><img src="img/favicon.ico" height=75 /></a>
 		  <ul class="nav_items">
 			<li><a href="/explore">Explore</a></li>
 			<li th:if="${#authorization.expression('isAuthenticated()')}"><a th:href="@{/dashboard}">Dashboard</a></li>

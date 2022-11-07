@@ -62,7 +62,7 @@ public class ListingController {
 		return "redirect:/dashboard";
 	}
 
-//	*******ZACS DELETE CONFIRM*****
+//	*******DELETE CONFIRM*****
 
 	@RequestMapping("/confirmDelete")
 	public String confirmDelete(@RequestParam(name = "id") Long id, Model model) throws IOException {
