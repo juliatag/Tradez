@@ -10,9 +10,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tradez.models.User;
 import com.tradez.services.ListingService;
@@ -77,16 +79,13 @@ public class UserController {
 	}
 
 	@PostMapping("/dashboard/profile/edit")
-	public String updateProfile(@Valid User user, BindingResult bindingResult, Model model) {
+	public String updateProfile(@Valid @ModelAttribute(name = "authUser") User authUser, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-//			model.addAttribute("authUser", this.service.getAuthUser());
-//			model.addAttribute("readonly", true);
+			printValidationErrors(bindingResult);
 			return "profile_edit";
 		}
-		user.setId(this.service.getAuthUser().getId());
-//		model.addAttribute("readonly", "true");
-//		model.addAttribute("authUser", authUser);
-		service.save(user);
+		authUser.setId(this.service.getAuthUser().getId());
+		service.save(authUser);
 		return "redirect:/dashboard";
 	}
 
@@ -96,5 +95,12 @@ public class UserController {
 		model.addAttribute("listings", this.listingService.findByUsername());
 		return "dashboard";
 	}
+	
+	//helper function to print validation errors in console
+		public void printValidationErrors(BindingResult bindingResult) {
+			System.out.println("validation errors:");
+			bindingResult.getFieldErrors().stream()
+					.forEach(f -> System.out.println(f.getField() + ": " + f.getDefaultMessage()));
+		}
 
 }
