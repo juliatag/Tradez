@@ -45,7 +45,7 @@ public class UserController {
 
 		String fieldName = service.validateUsernameAndEmail(user);
 		if(fieldName != null) {
-			bindingResult.rejectValue(fieldName, null, "The" + fieldName + " has been registered");
+			bindingResult.rejectValue(fieldName, null, "The " + fieldName + " has been registered");
 		}
 		
 		if (bindingResult.hasErrors()) {
