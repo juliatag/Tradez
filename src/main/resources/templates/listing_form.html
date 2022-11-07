@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<header th:replace="~{fragments/header :: header}"> </header>
+<meta th:replace="~{fragments/global/meta :: meta}" />
 <style>
+ /* 
   label {
     width:120px;
     margin-right:10px;
-    text-align:right
+  text-align:right
   }
   textarea,input[type=text],input[type=number],input[type=file],select {
     width:600px
-  }
+  }*/
   
 </style>
 <body>
+	<!-- PUSH FOOTER when there little page content -->
+	<div style="min-height: 74vh">
 <header th:replace="~{fragments/global/header :: header}">Global Header</header>
-	<section style="margin-top:6em;display:grid;place-items: center;">
-		<div class="form-section" >
-		    <div class="form_control inline">
+	<section class="featured" >
+		<div class="container my-5 form_section-container" >
+		    <div class="form_control">
 		      <label></label>
 			  <h2 th:text="${title}">Title</h2>
 			</div>
 
 			<form th:action="@{/saveListing}" method="post"
-				enctype="multipart/form-data" th:object="${listing}"
-			>
+				enctype="multipart/form-data" th:object="${listing}">
 
 				<input type="hidden" th:field="*{id}" />
 				<input type="hidden" name="status"  id="status" value="Available"/>
 				
-				<div class="form_control inline">
+				<div class="form_control ">
 				  <label>Title</label>
 				  <input type="text" th:field="*{title}" placeholder="Title"/> 
 				  <span class="alert_message error"
@@ -36,7 +38,7 @@
 					error</span> 
 				</div>
 					
-				<div class="form_control inline">
+				<div class="form_control ">
                   <label>Category</label>
 				  <select th:field="*{category}" >
 					 <option th:each="ca : ${categories}" th:text="${ca.name}"
@@ -44,7 +46,7 @@
 				   </select>
 				</div>
 				
-				<div class="form_control inline">
+				<div class="form_control ">
 				   <label>Estimated Value</label>
 				   <input type="number" th:field="*{estValue}" placeholder="Estimate value"/> 
 				   <span
@@ -53,7 +55,7 @@
 					  value error</span>
 				</div>
 					
-                <div class="form_control inline">
+                <div class="form_control ">
                   <label for="deliveries">Delivery</label> 
 				  <ul id="deliveries" style="list-style: none">
 					<li th:each="deli: ${deliveries}"
@@ -67,7 +69,7 @@
                 </div>	
                 
                 
-                <div class="form_control inline">
+                <div class="form_control ">
                   <label for="conditions">Condition</label> 
 				    
 				  <ul id="conditions" style="list-style: none">
@@ -81,7 +83,7 @@
 					error</span> 
                 </div>
                 
-                <div class="form_control inline" style="align-items: flex-start;">
+                <div class="form_control " >
 				   <label>Description</label>
 				   <textarea rows="10" th:field="*{description}" placehoder="description" placeholder="Describe the object here"></textarea>
 				   <span class="alert_message error"
@@ -89,7 +91,7 @@
 					error</span> 
 				</div>	
 				
-				<div class="form_control inline" >
+				<div class="form_control " >
 					<label for="thumbnail">Thumbnail</label> 
 				    <input type="file" id="thumbnail" name="imgFile" />
 				    <span class="alert_message error"
@@ -97,13 +99,14 @@
 					error</span> 
 				</div>
                 
-                <div class="form_control inline">
+                <div class="form_control ">
 		           <label></label>
 				   <button type="submit" class="btn">Submit</button>
 				</div>
 			</form>
 		</div>
 	</section>
+	</div>
 	
 	<footer th:replace="~{fragments/global/footer :: footer}">Global Header</footer>
 	
