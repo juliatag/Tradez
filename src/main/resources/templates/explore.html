@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:object="${user}">
+
+<head>
+	<!-- SITE META TAGS AND STILES -->
+	<meta th:replace="~{fragments/global/meta :: meta}" />
+	<title>Explore</title>
+</head>
+
+<body>
+	<!-- PUSH FOOTER when there little page content -->
+	<div style="min-height: 68vh">
+
+		<!-- SITE HEADER -->
+		<header th:replace="~{fragments/global/header :: header}">Global Header</header>
+
+		<!-- SEARCH AND EXPLORE SECTION -->
+		<section class="featured text-center">
+			<div class="container  mb-5">
+
+				<!-- Title and subtitle -->
+				<h1>Search and Explore</h1>
+				<p class="post_body ">take a look at what other people have to trade</p>
+
+				<!-- SEARCH BAR -->
+				<div class="post" th:replace="~{fragments/listing/search_bar :: search_bar}">Search Bar</div>
+
+			</div>
+		</section>
+
+		<!-- RESULTS SECTION -->
+		<section>
+			<div class="container posts_container">
+				<!-- Featured Listings -->
+				<div th:each="listing : ${listings}">
+					<article class="post" th:replace="~{fragments/listing/listing_preview :: listing_preview}">List of Listings</article>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- SITE FOOTER -->
+	<footer th:replace="~{fragments/global/footer :: footer}">Global Footer</footer>
+	<!-- GLOBAL SCRIPTS -->
+	<script th:replace="~{fragments/global/scripts :: scripts}"></script>
+</body>
+
+</html>

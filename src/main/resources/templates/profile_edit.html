@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- SITE META TAGS AND STILES -->
+<meta th:replace="~{fragments/global/meta :: meta}" />
+<title>Edit Profile</title>
+</head>
+
+<body>
+	<!-- PUSH FOOTER when there little page content -->
+	<div style="min-height: 68vh">
+
+		<!-- SITE HEADER -->
+		<header th:replace="~{fragments/global/header :: header}">Global
+			Header</header>
+
+		<!-- EDIT PROFILE SECTION -->
+		<section class="featured">
+			<div class="container form_section-container">
+				<h2>Edit Profile</h2>
+				
+				<!-- EDIT PROFILE form -->
+				<form th:object="${authUser}" th:action="@{/dashboard/profile/edit}" method="post">
+	
+					<!-- Form fields -->
+					<input th:replace="~{fragments/user/common_fields :: common_fields}" />
+			
+					<!-- Submit button -->
+					<button type="submit" class="btn">Update</button>
+				</form>
+			</div>
+		</section>
+	</div>
+
+	<!-- SITE FOOTER -->
+	<footer th:replace="~{fragments/global/footer :: footer}">Global Footer</footer>
+	<!-- GLOBAL SCRIPTS -->
+	<script th:replace="~{fragments/global/scripts :: scripts}"></script>
+</body>
+
+</html>

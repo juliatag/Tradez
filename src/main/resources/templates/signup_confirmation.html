@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:object="${user}">
+  <header th:replace="fragments/header :: header"></header>
+<body>
+    <section class="form_section">
+      <div class="container form_section-container">
+        <h2 style="text-align: center">Welcome to Tradez: [[*{username}]]</h2>
+        <form action="" method="" th:action="@{/login}">
+          <h3 class="alert_message success" style="text-align: center">You have successfully registered. You can login and start trading now!</h3>
+          <!--   <span class="alert_message success" th:if="${param.logout}">You have been logged out.</span> -->
+          <button type="submit" class="btn" style="margin: auto">Sign In</button>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

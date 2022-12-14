@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+</head>
+
+<body>
+
+	<article th:fragment="listing_preview" class="post">
+		<div class="post_thumbnail">
+			<a th:href="@{'/listingPage/' + ${listing.createdBy}+'/' + ${listing.id}}">
+				<img th:src="@{${'/loadListingImage/' + listing.id }}" alt="">
+			</a>
+
+		</div>
+		<div class="post_info">
+			<h3 class="post_title">
+				<a th:href="@{'/listingPage/' + ${listing.createdBy}+'/' + ${listing.id}}" th:text="${listing.title}">Listing Title</a>
+			</h3>
+
+			<small th:text="${listing.category}">Category</small> |
+			<small th:text="${listing.createDate.toString().substring(0,10)}">create date</small> |
+			<small><span th:text="${listing.estValue}">Estimated value</span>$</small> |
+			<a th:href="@{'/profile/'+ ${listing.createdBy}}">
+			<small th:text="${listing.createdBy}">create date</small>
+			</a>
+
+		</div>
+	</article>
+
+</body>
+
+</html>

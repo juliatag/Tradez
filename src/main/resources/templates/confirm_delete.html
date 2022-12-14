@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:object="${user}">
+
+<head>
+<meta th:replace="~{fragments/global/meta :: meta}" />
+<title>Explore</title>
+</head>
+
+<body>
+	<header th:replace="~{fragments/global/header :: header}">Global
+		Header</header>
+		
+	<section style="display:grid;place-items: center;margin-top:6em">
+
+		<h1>ARE YOU SURE YOU WANT TO DELETE?</h1>
+		
+		<div>
+			<form th:action="@{/deleteListing}" method="post">
+				<input type="hidden" name="id" th:value="${listing.id}" />
+				<button type="submit" class="btn danger my-5 text-center">delete</button>
+			</form>
+		</div>
+		
+
+		<!-- <a th:href="@{'/deleteListing/' + ${listing.id}}" class="btn sm danger my-5 ">Delete</a> -->
+		<div
+			class="container posts_container text-center justify-content-center">
+			<article></article>
+			<article
+				th:replace="~{fragments/listing/listing_preview :: listing_preview}">Listing
+				Preview</article>
+			<article></article>
+		</div>
+	</section>
+
+
+	<footer th:replace="~{fragments/global/footer :: footer}">Global
+		Footer</footer>
+	<script th:replace="~{fragments/global/scripts :: scripts}">
+		//Global Scripts
+	</script>
+</body>
+
+</html>

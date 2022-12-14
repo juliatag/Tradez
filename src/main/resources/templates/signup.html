@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:replace="~{fragments/global/meta :: meta}" />
+<title>Sign Up</title>
+</head>
+
+<body th:object="${user}">
+	<header th:replace="~{fragments/global/header :: header}">Global
+		Header</header>
+
+	<section class="featured">
+		<div class="container form_section-container">
+			<h2>Sign Up</h2>
+			<form th:fragment="user_form" th:object="${user}"
+				th:action="@{/signup}" method="post">
+
+				<input th:replace="~{fragments/user/common_fields :: common_fields}" />
+
+				<button type="submit" class="btn">Sign Up</button>
+			</form>
+		</div>
+		<div class="text-center mb-5">
+			<h3>Already have an account?</h3>
+			<a href="/login"><button class="btn">Login</button></a>
+		</div>
+	</section>
+
+
+	<footer th:replace="~{fragments/global/footer :: footer}">Global
+		Header</footer>
+	<script th:replace="~{fragments/global/scripts :: scripts}">
+		//Global Scripts
+	</script>
+</body>
+
+</html>

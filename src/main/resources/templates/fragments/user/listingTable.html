@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div align="center" th:fragment="table">
+	<div class="flex justify-content-space-between align-items-center mb-1">
+		<h3>Manage Listings</h3>
+		<a class="btn sm" th:href="@{/createListing}"><i class="uil uil-image-plus"></i>
+			New listing
+		</a>
+	</div>
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th class="th-image">image</th>
+				<th class="th-title">title</th>
+				<th class="th-status">status</th>
+				<th class="th-state">condition</th>
+				<th class="th-value">value</th>
+				<th class="th-delivery">delivery</th>
+				<th class="th-category">category</th>
+				<th class="th-actions" colspan="2"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="listing : ${listings}">
+				<td class="td-image">
+					<a th:href="@{'/listingPage/' + ${listing.createdBy}+'/' + ${listing.id}}">
+						<img th:src="@{${'/loadListingImage/' + listing.id }}" width="40px" height="40px" />
+					</a>
+				</td>
+				<td class="td-title">
+					<a th:href="@{'/listingPage/' + ${listing.createdBy}+'/' + ${listing.id}}">
+						<span th:text="${listing.title}">Title</span>
+					</a>
+				</td>
+				<td class="td-status" th:classappend="${listing.status == 'Traded'} ? traded : available" th:text="${listing.status}">status</td>
+				<td class="td-state" th:text="${listing.state}">Condition</td>
+				<td class="td-value" ><span th:text="${listing.estValue}">Value</span>$</td>
+				<td class="td-delivery" th:text="${listing.delivery}">delivery</td>
+				<td class="td-category" th:text="${listing.category}">category</td>
+				
+<!-- 				<form th:action="@{/explore}" method="post"
+			class="container search_bar-container">
+			<div>
+				<i class="uil uil-search"></i> <input type="search" name="search"
+					placeholder="Search"  th:value="${search}"/>
+			</div>
+			<button type="submit" class="btn">Go</button>
+		</form> -->
+
+				<td class="text-right td-actions">
+					<form th:action="@{/updateListing}" method="post">
+						<input type="hidden" name="id" th:value="${listing.id}"/>
+						<button type="submit" class="btn sm">edit</button>
+					</form>
+				</td>
+				<td class="text-right td-actions">
+					<form th:action="@{/confirmDelete}" method="post">
+						<input type="hidden" name="id" th:value="${listing.id}"/>
+						<button type="submit" class="btn sm danger">delete</button>
+					</form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+</html>

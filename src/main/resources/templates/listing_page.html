@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:object="${listing}">
+
+<head>
+<meta th:replace="~{fragments/global/meta :: meta}" />
+<title>Explore</title>
+</head>
+
+<body>
+	<header th:replace="~{fragments/global/header :: header}">Global
+		Header</header>
+	<div class="my-3">
+		<!-- DO NOT REMOVE, FOR PADDING -->
+		<p>&;nbsp</p>
+	</div>
+
+	<div class="container my-5 mb-4 text-center">
+		<h1 class="" th:text="${listing.title}">title</h1>
+
+	</div>
+
+	<div class="container my-3">
+		<div class="listing-details-section">
+			<div class="">
+				<img class="listing_preview"
+					th:src="@{${'/loadListingImage/' + listing.id }}" alt="">
+			</div>
+
+
+			<div>
+				<ul class="contrast">
+
+					<li><h3>Description:</h3> <span
+						th:text="${listing.description}"></span></li>
+
+					<li><b> Category: </b> <span th:text="${listing.category}"></span></li>
+					<li><b> Condition: </b> <span th:text="${listing.state}"></span></li>
+					<li><b> Status: </b> <span th:text="${listing.status}"></span></li>
+					<li><b> Delivery: </b> <span th:text="${listing.delivery}"></span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container my-5">
+		<div class="listing-profile-section">
+			<div class="contrast">
+			
+				<div class="text-center">
+				<a th:href="@{'/profile/'+ ${user.username}}">
+					<h1 th:text="${user.username}">title</h1>
+				</a>
+				
+				<p th:text="${user.description}"></p>
+				</div>
+				<div class="text-center">
+					<h3>Want to see what else they have? visit their profile!</h3>
+					<a target="_blank" th:href="@{'/profile/'+ ${user.username}}"><button
+							class="btn">View Profile</button></a>
+				</div>
+			</div>
+
+			<div class="text-center ">
+				<h1>Interested?</h1>
+				<h3>If you have something to trade contact the user!</h3>
+				<a target="_blank" th:href="@{mailto:{to}(to=${user.email})}"><button
+						class="btn">Contact</button></a>
+
+			</div>
+		</div>
+	</div>
+	<div class="my-5">
+		<article th:replace="~{fragments/user/map :: map}">Map</article>
+		<article></article>
+	</div>
+
+	<footer th:replace="~{fragments/global/footer :: footer}">Global
+		Header</footer>
+	<script th:replace="~{fragments/global/scripts :: scripts}">
+		//Global Scripts
+	</script>
+</body>
+
+</html>

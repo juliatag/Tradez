@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org">
+  <header th:fragment="header">
+	<nav>
+		<div class="container nav_container">
+		  <a href="/" class="nav_logo<"><img th:src="@{/img/favicon.ico}" height=75 /></a>
+		  <ul class="nav_items">
+			<li><a href="/explore">Explore</a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}"><a th:href="@{/dashboard}">Dashboard</a></li>
+			<li class="nav_login" th:if="${#authorization.expression('!isAuthenticated()')}"><a th:href="@{/login}">Login</a></li>
+			<li class="nav_signup" th:if="${#authorization.expression('!isAuthenticated()')}"><a th:href="@{/signup}">Signup</a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}" class="nav_profile">
+				<div class="nav_username">
+					<a th:href="@{/dashboard}"><div sec:authentication="name"></div></a>
+				</div>
+				<ul>
+				  <li><a class="nav_logout" th:href="@{/logout}">Logout</a></li>
+				</ul>
+			  </li>
+		</ul>
+  
+		  <button id="open_nav-btn"><i class="uil uil-bars"></i></button>
+		  <button id="close_nav-btn"><i class="uil uil-multiply"></i></button>
+		</div>
+	  </nav>
+  </header>
+  <body>
+  </body>
+</html>

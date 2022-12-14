@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <header th:replace="fragments/header :: header"></header>
+  <body>
+  <header th:replace="~{fragments/global/header :: header}">Global Header</header>
+  <section class="form_section">
+    <div class="container form_section-container">
+      <h2>Sign In</h2>
+      <form action="" method="post" th:action="@{/login}">
+        <input type="text" name="username" placeholder="Email or Username" />
+        <input type="password" name="password" placeholder="Password" />
+        <span class="alert_message error" th:if="${param.error}" >Invalid Email or Password</span>
+      <!--   <span class="alert_message success" th:if="${param.logout}">You have been logged out.</span> -->
+        <button type="submit" class="btn">Sign In</button>
+        <small>Do not have an account? <a th:href="@{/signup}">Sign Up</a></small>
+      </form>
+    </div>
+    </section>
+    <footer th:replace="~{fragments/global/footer :: footer}">Global Header</footer>
+    </body>
+</html>

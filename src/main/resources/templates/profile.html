@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:object="${user}">
+
+<head>
+<!-- SITE META TAGS AND STILES -->
+<meta th:replace="~{fragments/global/meta :: meta}" />
+<title>Profile</title>
+</head>
+
+<body>
+	<!-- PUSH FOOTER when there little page content -->
+	<div style="min-height: 68vh">
+
+		<!-- SITE HEADER -->
+		<header th:replace="~{fragments/global/header :: header}">Global
+			Header</header>
+
+		<!-- USER PUBLIC PROFILE DETAILS -->
+		<section class="featured text-center" th:object="${user}">
+			<div class="container  mb-5">
+
+				<!-- User Details -->
+				<h1 th:text="${user.username}">Username</h1>
+				<a th:href="@{mailto:} + ${user.email}" target="_blank"><i
+					class="uil uil-envelope-add"></i> Email</a> | <a
+					th:href="${'http://maps.google.com/maps?q=Postal+Code+' + user.postalCode.substring(0,3)}"
+					target="_blank"><i class="uil uil-map"></i> Location</a>
+				<p th:text="${user.description}" class="post_body my-3">Profile
+					description...</p>
+			</div>
+		</section>
+
+		<!-- USER LISTINGS SECTION -->
+		<section>
+			<h2 class="text-center mb-2">Listings</h2>
+			<div class="container posts_container">
+				<!-- User Listings -->
+				<div th:each="listing : ${listings}">
+					<article class="post"
+						th:if="${listing.status == 'Available'}" th:replace="~{fragments/listing/listing_preview :: listing_preview}">List
+						of Listings</article>
+				</div>
+			</div>
+		</section>
+	</div>
+	
+	<div class="my-5">
+		<article th:replace="~{fragments/user/map :: map}">Map</article>
+		<article></article>
+	</div>
+
+
+
+
+	<!-- SITE FOOTER -->
+	<footer th:replace="~{fragments/global/footer :: footer}">Global
+		Footer</footer>
+	<!-- GLOBAL SCRIPTS -->
+	<script th:replace="~{fragments/global/scripts :: scripts}"></script>
+
+
+</body>
+
+</html>
+

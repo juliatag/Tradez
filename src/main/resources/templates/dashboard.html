@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+	<!-- SITE META TAGS AND STILES -->
+	<meta th:replace="~{fragments/global/meta :: meta}" />
+	<title>User #1</title>
+</head>
+
+<body>
+	<!-- PUSH FOOTER when there little page content -->
+	<div style="min-height: 68vh">
+
+		<!-- SITE HEADER -->
+		<header th:replace="~{fragments/global/header :: header}">Global Header</header>
+
+		<!--TITLE SECTION -->
+		<section class="featured text-center">
+			<div class="container my-5 mb-2">
+
+				<!-- Title and subtitle -->
+				<h1>Dashboard</h1>
+				<p class="post_body ">manage your profile and listings in one place</p>
+
+			</div>
+		</section>
+
+		<!--DASHBOARD SECTION -->
+		<section class="dashboard" th:object="${authUser}" >
+			<div class="container dashboard_container mb-5">
+
+				<!--USER PROFILE SIDEBAR -->
+
+				<!-- toggle button -->
+				<div th:replace="~{fragments/user/dashboard_profile :: toggle_btn}" class="sidebar-toggle-btn">Toggle button</div>
+				<!-- Sidebar Area -->
+				<aside  th:replace="~{fragments/user/dashboard_profile :: profile_sidebar}">Profile Sidebar</aside>
+
+				<!-- LISTINGS TABLE -->
+				<main>
+					<div th:replace="~{fragments/user/listingTable :: table}"></div>
+				</main>
+
+			</div>
+		</section>
+
+	</div>
+
+	<!-- SITE FOOTER -->
+	<footer th:replace="~{fragments/global/footer :: footer}">Global Footer</footer>
+	<!-- GLOBAL SCRIPTS -->
+	<script th:replace="~{fragments/global/scripts :: scripts}"></script>
+</body>
+
+</html>

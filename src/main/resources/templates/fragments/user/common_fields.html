@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+</head>
+
+<body>
+	<!-- FIELDS for SUGNUP and EDIT PROFILE forms -->
+	<th:block th:fragment="common_fields">
+
+		<!-- EMAIL -->
+		<input type="email" th:field="*{email}" placeholder="Email" th:readonly=${readonly}/>
+		<span class="alert_message error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</span>
+
+		<!-- USERNAME -->
+		<input type="text" th:field="*{username}" placeholder="Username" th:readonly=${readonly}/>
+		<span class="alert_message error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username
+			error</span>
+
+		<!-- PASSWORD -->
+		<input type="password" th:field="*{password}" placeholder="Enter password"/>
+		<ul class="alert_message error" th:each="error: ${#fields.errors('password')}">
+			<li th:each="message : ${error.split(',')}">
+				<p th:text="${message}">password error</p>
+			</li>
+		</ul>
+
+		<!-- CONFIRM PASSWORD -->
+		<input type="password" th:field="*{confirmPassword}" placeholder="Confirm password" />
+		<ul class="alert_message error" th:each="error: ${#fields.errors('confirmPassword')}">
+			<li th:each="message : ${error.split(',')}">
+				<p th:text="${message}">confirmation error</p>
+			</li>
+		</ul>
+
+		<!-- POSTAL CODE -->
+		<input type="text" th:field="*{postalCode}" placeholder="Postal Code" />
+		<span class="alert_message error" th:if="${#fields.hasErrors('postalCode')}"
+			th:errors="*{postalCode}">postalCode error</span>
+
+		<!-- DESCRIPTION TEXT -->
+		<label>Tell other users what you would like to recieve in a trade!</label>
+		<textarea rows="10" th:field="*{description}" placeholder="What YOU want"></textarea>
+
+	</th:block>
+
+</body>
