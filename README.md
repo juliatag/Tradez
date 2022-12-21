@@ -5,11 +5,9 @@ A Web App where people can trade things.
 - Java
 - Spring Boot
 - Spring Security
-- UI/UXz
-- Database Design
 
 ## Phase
-- [ ]  _Deployment_
+- [ ]  _Deployed_
 - [x]  _Developement_
 - [x]  _Design_
 - [x] _Planning_
